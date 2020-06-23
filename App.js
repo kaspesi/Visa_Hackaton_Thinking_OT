@@ -1,18 +1,47 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-// import Button from './components/Button';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import StartScreen from './screens/StartScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import HomeScreen from './screens/HomeScreen';
+import MerchantListScreen from './screens/MerchantListScreen';
+import Button from './components/Button';
+
+const Stack = createStackNavigator();
 
 export default function App() {
 	return (
-		<View style={styles.container}>
-			<RegisterScreen />
-			{/* <StartScreen /> */}
-			{/* <Text>Open up App.js to start working on your app!</Text>
-			<Button buttonPressHandler={() => {}}>Some Button text as props children</Button> */}
-		</View>
+		<NavigationContainer>
+			<Stack.Navigator
+				screenOptions={{
+					headerStyle: {
+						backgroundColor: 'palevioletred'
+					},
+					headerTintColor: '#fff',
+					headerTitleStyle: {
+						fontWeight: 'bold'
+					}
+				}}
+			>
+				<Stack.Screen
+					name="Home"
+					component={HomeScreen}
+					options={{
+						title: 'Home sweet home',
+						headerRight: () => <Button buttonPressHandler={() => alert('this is a button')}>BUTTON</Button>
+					}}
+				/>
+				<Stack.Screen
+					name="MerchantList"
+					component={MerchantListScreen}
+					options={{ title: 'Nearby Merchants' }}
+				/>
+			</Stack.Navigator>
+		</NavigationContainer>
 	);
 }
 
