@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 
-export default () => {
+export default ({ navigation }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.header}>
@@ -12,8 +12,20 @@ export default () => {
 			</View>
 
 			<View style={styles.buttonsContainer}>
-				<Button buttonPressHandler={() => {}}>Register</Button>
-				<Button buttonPressHandler={() => {}}>Login</Button>
+				<Button
+					buttonPressHandler={() => {
+						navigation.navigate('Register');
+					}}
+				>
+					Register
+				</Button>
+				<Button
+					buttonPressHandler={() => {
+						navigation.navigate('Login');
+					}}
+				>
+					Login
+				</Button>
 			</View>
 		</View>
 	);

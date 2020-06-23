@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, Alert } from 'react-native';
 import Button from '../components/Button';
 
-export default () => {
+export default ({ navigation, route }) => {
 	const [ emailInput, setEmailInput ] = useState('');
 	const [ passwordInput, setPasswordInput ] = useState('');
+
+	const { setIsAuth } = route.params;
 
 	const loginButtonHandler = async () => {
 		Alert.alert('Login!', `email ${emailInput} password ${passwordInput}`, [
@@ -16,6 +18,7 @@ export default () => {
 		]);
 
 		// validate email and password, then post /login fetch
+		setIsAuth(true);
 	};
 
 	return (
@@ -47,7 +50,8 @@ export default () => {
 					</View>
 				</View>
 
-				<View style={styles.buttonContainer}>
+				<View style={styles.buttonsContainer}>
+					<Button buttonPressHandler={() => navigation.goBack()}>Go Back</Button>
 					<Button buttonPressHandler={loginButtonHandler}>Login</Button>
 				</View>
 			</View>
@@ -101,7 +105,11 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: '400'
 	},
-	buttonContainer: {
-		marginBottom: 100
+	buttonsContainer: {
+		marginBottom: 100,
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'center',
+		width: '80%'
 	}
 });
