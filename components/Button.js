@@ -11,13 +11,20 @@ export default ({ children, buttonPressHandler }) => {
 
 const styles = StyleSheet.create({
 	buttonContainer: {
-		padding: 10,
+		padding: 15,
 		borderWidth: 2,
 		borderColor: 'black',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		borderRadius: 25,
+		borderWidth: 2,
+		borderColor: 'black',
+		backgroundColor: 'palevioletred',
+		minWidth: '30%'
 	},
 	buttonText: {
-		color: 'red'
+		color: 'white',
+		fontSize: 16,
+		fontWeight: '400'
 	}
 });
