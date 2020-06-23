@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# mobile
-=======
+
 # Visa_Hackathon_Thinking_OT
 
 
@@ -13,4 +11,3 @@
 *  Database - to do 
 *  Mobile - to do 
  
->>>>>>> e92a3ac37a5771a00f4a590e6c2a7c2c2d01d435
