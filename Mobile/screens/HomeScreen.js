@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Button from '../components/Button';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default ({ navigation }) => {
 	return (

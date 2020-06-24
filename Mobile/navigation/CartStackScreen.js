@@ -7,7 +7,17 @@ const CartStack = createStackNavigator();
 
 export default () => {
 	return (
-		<CartStack.Navigator>
+		<CartStack.Navigator
+			screenOptions={{
+				headerStyle: {
+					backgroundColor: 'palevioletred'
+				},
+				headerTintColor: 'white',
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
+			}}
+		>
 			<CartStack.Screen name="Cart" component={CartScreen} />
 			<CartStack.Screen name="Checkout" component={CheckoutScreen} />
 		</CartStack.Navigator>

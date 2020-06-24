@@ -8,8 +8,24 @@ const MerchantStack = createStackNavigator();
 
 export default () => {
 	return (
-		<MerchantStack.Navigator>
-			<MerchantStack.Screen name="Home" component={HomeScreen} />
+		<MerchantStack.Navigator
+			screenOptions={{
+				headerStyle: {
+					backgroundColor: 'palevioletred'
+				},
+				headerTintColor: 'white',
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
+			}}
+		>
+			<MerchantStack.Screen
+				name="Home"
+				component={HomeScreen}
+				options={{
+					title: 'Welcome!'
+				}}
+			/>
 			<MerchantStack.Screen name="MerchantList" component={MerchantListScreen} />
 			<MerchantStack.Screen name="MerchantItems" component={MerchantItemsScreen} />
 		</MerchantStack.Navigator>

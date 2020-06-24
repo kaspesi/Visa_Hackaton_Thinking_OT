@@ -6,7 +6,17 @@ const ScannerStack = createStackNavigator();
 
 export default () => {
 	return (
-		<ScannerStack.Navigator>
+		<ScannerStack.Navigator
+			screenOptions={{
+				headerStyle: {
+					backgroundColor: 'palevioletred'
+				},
+				headerTintColor: 'white',
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
+			}}
+		>
 			<ScannerStack.Screen name="Scanner" component={ScannerScreen} />
 		</ScannerStack.Navigator>
 	);
