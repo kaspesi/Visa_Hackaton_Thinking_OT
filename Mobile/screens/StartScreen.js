@@ -7,7 +7,9 @@ export default ({ navigation }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.header}>
-				<Text style={styles.headerTitle}>Thinking OT</Text>
+				<View style={styles.headerTitleContainer}>
+					<Text style={styles.headerTitle}>Safe Checkout</Text>
+				</View>
 				<Logo />
 			</View>
 
@@ -43,9 +45,16 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
+	headerTitleContainer: {
+		backgroundColor: 'orangered',
+		borderRadius: 20,
+		padding: 20,
+		marginBottom: 10
+	},
 	headerTitle: {
 		fontSize: 24,
-		fontWeight: '700'
+		fontWeight: '700',
+		color: 'white'
 	},
 	buttonsContainer: {
 		flexDirection: 'row',

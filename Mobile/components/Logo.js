@@ -17,8 +17,6 @@ export default () => {
 
 const styles = StyleSheet.create({
 	container: {
-		borderWidth: 2,
-		borderColor: 'black',
 		borderRadius: 200,
 		height: 250,
 		width: 250,
