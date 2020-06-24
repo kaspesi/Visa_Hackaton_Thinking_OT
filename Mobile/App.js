@@ -8,6 +8,8 @@ import MerchantStackScreen from './navigation/MerchantStackScreen';
 import ScannerStackScreen from './navigation/ScannerStackScreen';
 import CartStackScreen from './navigation/CartStackScreen';
 
+import AuthContext from './context/AuthContext';
+
 const Tab = createBottomTabNavigator();
 
 export default () => {
@@ -28,7 +30,9 @@ export default () => {
 					<Tab.Screen name="Cart" component={CartStackScreen} />
 				</Tab.Navigator>
 			) : (
-				<StartStackScreen setIsAuth={setIsAuth} />
+				<AuthContext.Provider value={{ setIsAuth }}>
+					<StartStackScreen />
+				</AuthContext.Provider>
 			)}
 		</NavigationContainer>
 	);

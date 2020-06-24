@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import AuthContext from '../context/AuthContext';
 import {
 	StyleSheet,
 	View,
@@ -14,6 +15,8 @@ import Button from '../components/Button';
 export default ({ navigation }) => {
 	const [ emailInput, setEmailInput ] = useState('');
 	const [ passwordInput, setPasswordInput ] = useState('');
+
+	const { setIsAuth } = useContext(AuthContext);
 
 	const loginButtonHandler = async () => {
 		Alert.alert('Login Clicked!', 'Will redirect to home screen by changing auth state.', [
