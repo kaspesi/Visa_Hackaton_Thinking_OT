@@ -23,7 +23,7 @@ export default () => {
 				name="Home"
 				component={HomeScreen}
 				options={{
-					headerShown: false
+					title: 'Welcome'
 				}}
 			/>
 			<MerchantStack.Screen name="MerchantList" component={MerchantListScreen} />

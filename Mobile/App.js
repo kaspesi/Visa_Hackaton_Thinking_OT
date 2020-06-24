@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
+import { AsyncStorage } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -14,11 +15,22 @@ import AuthContext from './context/AuthContext';
 const Tab = createBottomTabNavigator();
 
 export default () => {
-	const [ isAuth, setIsAuth ] = useState(true);
+	const [ isAuth, setIsAuth ] = useState(false);
 
 	// On initial app mount, I need to check async storage to see if we have the auth token to set isAuth.
 	useEffect(() => {
 		console.log('use effect runs on mount...');
+
+		const effectCallback = async () => {
+			const result = await AsyncStorage.getItem('token');
+
+			// The JWT exists, set isAuth to true. (Technically you should verify in backend).
+			if (result) {
+				setIsAuth(true);
+			}
+		};
+
+		effectCallback();
 	}, []);
 
 	return (

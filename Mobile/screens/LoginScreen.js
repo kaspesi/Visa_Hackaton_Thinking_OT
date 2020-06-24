@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		backgroundColor: 'palevioletred',
-		height: 100,
+		height: 80,
 		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'center'
