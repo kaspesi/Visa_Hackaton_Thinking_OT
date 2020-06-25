@@ -15,7 +15,7 @@ import AuthContext from './context/AuthContext';
 const Tab = createBottomTabNavigator();
 
 export default () => {
-	const [ isAuth, setIsAuth ] = useState(false);
+	const [ isAuth, setIsAuth ] = useState(true);
 
 	// On initial app mount, I need to check async storage to see if we have the auth token to set isAuth.
 	useEffect(() => {

@@ -26,7 +26,13 @@ export default () => {
 					title: 'Welcome'
 				}}
 			/>
-			<MerchantStack.Screen name="MerchantList" component={MerchantListScreen} />
+			<MerchantStack.Screen
+				name="MerchantList"
+				component={MerchantListScreen}
+				options={{
+					title: 'Nearby Merchants'
+				}}
+			/>
 			<MerchantStack.Screen name="MerchantItems" component={MerchantItemsScreen} />
 		</MerchantStack.Navigator>
 	);
