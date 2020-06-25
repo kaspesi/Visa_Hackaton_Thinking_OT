@@ -19,14 +19,14 @@ export default ({ navigation }) => {
 						navigation.navigate('Register');
 					}}
 				>
-					Register
+					<Text style={{fontFamily: ""}}>Register</Text>
 				</Button>
 				<Button
 					buttonPressHandler={() => {
 						navigation.navigate('Login');
 					}}
 				>
-					Login
+					<Text style={{fontFamily: ""}}>Login</Text>
 				</Button>
 			</View>
 		</View>
@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
 	headerTitle: {
 		fontSize: 24,
 		fontWeight: '700',
-		color: 'white'
+		color: 'white',
+		fontFamily: ""
 	},
 	buttonsContainer: {
 		flexDirection: 'row',

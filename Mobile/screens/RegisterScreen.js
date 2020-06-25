@@ -84,7 +84,7 @@ export default ({ navigation }) => {
 
 				<View style={styles.formContainer}>
 					<View style={styles.inputContainer}>
-						<Text style={styles.inputLabel}>Email:</Text>
+						<Text style={styles.inputLabel}>Email: </Text>
 						<TextInput
 							style={{ ...styles.baseInput, ...styles.emailInput }}
 							onChangeText={(input) => setEmailInput(input)}
@@ -94,7 +94,7 @@ export default ({ navigation }) => {
 					</View>
 
 					<View style={styles.inputContainer}>
-						<Text style={styles.inputLabel}>Password:</Text>
+						<Text style={styles.inputLabel}>Password: </Text>
 						<TextInput
 							style={{ ...styles.baseInput, ...styles.passwordInput }}
 							onChangeText={(input) => setPasswordInput(input)}
@@ -104,7 +104,7 @@ export default ({ navigation }) => {
 					</View>
 
 					<View style={styles.inputContainer}>
-						<Text style={styles.inputLabel}>Confirm:</Text>
+						<Text style={styles.inputLabel}>Confirm: </Text>
 						<TextInput
 							style={{ ...styles.baseInput, ...styles.confirmPasswordInput }}
 							onChangeText={(input) => setConfirmPasswordInput(input)}
@@ -115,8 +115,12 @@ export default ({ navigation }) => {
 				</View>
 
 				<View style={styles.buttonsContainer}>
-					<Button buttonPressHandler={() => navigation.goBack()}>Go Back</Button>
-					<Button buttonPressHandler={registerButtonHandler}>Register</Button>
+					<Button buttonPressHandler={() => navigation.goBack()}>
+						<Text style={{fontFamily: ""}}>Go Back</Text>
+					</Button>
+					<Button buttonPressHandler={registerButtonHandler}>
+						<Text style={{fontFamily: ""}}>Register</Text>
+					</Button>
 				</View>
 			</View>
 		</TouchableWithoutFeedback>
@@ -141,7 +145,8 @@ const styles = StyleSheet.create({
 	headerText: {
 		fontSize: 22,
 		fontWeight: '700',
-		color: 'white'
+		color: 'white',
+		fontFamily: ""
 	},
 	formContainer: {
 		borderRadius: 50,
