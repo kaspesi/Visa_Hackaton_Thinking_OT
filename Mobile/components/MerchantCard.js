@@ -7,13 +7,11 @@ export default ({ id, name, street, city, state, country, zip }) => {
 		<View style={styles.merchantCard}>
 			<View style={styles.leftSection}>
 				<View style={styles.upperCard}>
-					<Text style={styles.upperCardText}>
-						{id} {name}
-					</Text>
+					<Text style={styles.upperCardText}>{name}</Text>
 				</View>
 				<View style={styles.lowerCard}>
 					<Text style={styles.lowerCardText}>
-						{street}, {city} {state}, {country} {zip}
+						{street}, {city} {state}
 					</Text>
 				</View>
 			</View>
@@ -26,23 +24,35 @@ export default ({ id, name, street, city, state, country, zip }) => {
 
 const styles = StyleSheet.create({
 	merchantCard: {
-		borderWidth: 3,
-		borderRadius: 20,
+		borderBottomWidth: 2,
 		padding: 20,
-		width: '80%',
+		width: '100%',
 		flexDirection: 'row',
-		justifyContent: 'space-around',
+		justifyContent: 'space-between',
 		alignItems: 'center'
 	},
 	upperCard: {
-		fontSize: 20,
-		fontWeight: '700',
 		borderWidth: 2,
 		borderColor: 'paleturquoise'
+	},
+	upperCardText: {
+		fontSize: 24,
+		fontWeight: '700'
 	},
 	lowerCard: {
 		fontSize: 18,
 		borderWidth: 2,
 		borderColor: 'palegreen'
+	},
+	lowerCardText: {
+		fontSize: 20
+	},
+	leftSection: {
+		borderWidth: 2,
+		width: '60%'
+	},
+	rightSection: {
+		borderWidth: 2,
+		width: '30%'
 	}
 });
