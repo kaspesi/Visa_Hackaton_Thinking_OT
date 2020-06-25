@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Button from '../components/Button';
 
-export default ({ id, name, street, city, state, country, zip }) => {
+export default ({ id, name, street, city, state, country, zip, navigation }) => {
 	return (
 		<View style={styles.merchantCard}>
 			<View style={styles.leftSection}>
@@ -16,7 +16,20 @@ export default ({ id, name, street, city, state, country, zip }) => {
 				</View>
 			</View>
 			<View style={styles.rightSection}>
-				<Button buttonPressHandler={() => {}}>Details</Button>
+				<Button
+					buttonPressHandler={() =>
+						navigation.navigate('MerchantItems', {
+							id,
+							name,
+							street,
+							city,
+							state,
+							country,
+							zip
+						})}
+				>
+					Details
+				</Button>
 			</View>
 		</View>
 	);

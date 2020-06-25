@@ -65,7 +65,7 @@ export default ({ navigation }) => {
 					{merchants.map((merchant) => {
 						return (
 							<View key={merchant.id}>
-								<MerchantCard {...merchant} />
+								<MerchantCard {...merchant} navigation={navigation} />
 							</View>
 						);
 					})}
