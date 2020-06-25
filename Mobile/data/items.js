@@ -10,7 +10,7 @@ const items = [
 	},
 	{
 		itemId: 2,
-		merchantId: 2,
+		merchantId: 1,
 		name: 'name2',
 		price: 2,
 		stock: 2,
@@ -18,7 +18,7 @@ const items = [
 	},
 	{
 		itemId: 3,
-		merchantId: 3,
+		merchantId: 1,
 		name: 'name3',
 		price: 3,
 		stock: 3,
@@ -26,7 +26,7 @@ const items = [
 	},
 	{
 		itemId: 4,
-		merchantId: 4,
+		merchantId: 1,
 		name: 'name4',
 		price: 4,
 		stock: 4,

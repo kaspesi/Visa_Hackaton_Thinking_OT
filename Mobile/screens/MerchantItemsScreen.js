@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, AsyncStorage } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import MerchantItem from '../components/MerchantItem';
+import items from '../data/items';
 
 export default ({ route }) => {
 	const { id, street, city } = route.params;
 
-	const [ items, setItems ] = useState([]);
+	// const [ items, setItems ] = useState([]);
 
 	useEffect(() => {
 		// UNCOMMENT BELOW WHEN SERVER SETUP
@@ -52,8 +54,12 @@ export default ({ route }) => {
 
 				<ScrollView style={styles.scroll}>
 					<View style={styles.itemsWrapper}>
-						{items.map((item) => {
-							return <MerchantItem {...item} />;
+						{items.filter((item) => item.merchantId === id).map((item) => {
+							return (
+								<View key={item.itemId}>
+									<MerchantItem {...item} />
+								</View>
+							);
 						})}
 					</View>
 				</ScrollView>
@@ -62,4 +68,9 @@ export default ({ route }) => {
 	);
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	scroll: {
+		width: '100%',
+		height: '100%'
+	}
+});
