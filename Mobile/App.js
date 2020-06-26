@@ -11,28 +11,35 @@ import ScannerStackScreen from './navigation/ScannerStackScreen';
 import CartStackScreen from './navigation/CartStackScreen';
 
 import AuthContext from './context/AuthContext';
-import MerchantContext from './context/MerchantContext';
+import MerchantIdContext from './context/MerchantIdContext';
 import CartContext from './context/CartContext';
 
 const Tab = createBottomTabNavigator();
 
 export default () => {
 	const [ isAuth, setIsAuth ] = useState(true);
-	// Both confirmedMerchant and JSON.stringify(cart) will persist in AsyncStorage.
-	const [ confirmedMerchant, setConfirmedMerchant ] = useState(-1); // merchantId
+	// Both confirmedMerchantId and JSON.stringify(cart) will persist in AsyncStorage.
+	const [ confirmedMerchantId, setConfirmedMerchantId ] = useState(-1); // merchantId
 	const [ cart, setCart ] = useState([]);
 
-	// On initial app mount, I need to check async storage to see if we have the auth token to set isAuth.
+	// On initial load, fetch token, merchantId, and cart from async storage to set state.
 	useEffect(() => {
 		const effectCallback = async () => {
-			const result = await AsyncStorage.getItem('token');
+			const storageToken = await AsyncStorage.getItem('token');
+			if (storageToken) setIsAuth(true);
 
-			// The JWT exists, set isAuth to true. (Technically you should verify in backend).
-			if (result) {
-				setIsAuth(true);
-			}
+			const storageMerchantId = await AsyncStorage.getItem('merchantId');
+			if (storageMerchantId !== null && storageMerchantId !== -1) setConfirmedMerchantId(storageMerchantId);
+
+			const storageCartString = await AsyncStorage.getItem('cart');
+			const storageCart = JSON.parse(storageCartString);
+			if (storageCart !== null && storageCart.length !== 0) setCart(storageCart);
+
+			// CLEAR
+			// await AsyncStorage.removeItem('token');
+			// await AsyncStorage.removeItem('merchantId');
+			// await AsyncStorage.removeItem('cart');
 		};
-
 		effectCallback();
 	}, []);
 
@@ -40,7 +47,7 @@ export default () => {
 		// If we are authenticated, show the home screen, otherwise show the start screen with register/login.
 		<NavigationContainer>
 			{isAuth ? (
-				<MerchantContext.Provider value={{ confirmedMerchant, setConfirmedMerchant }}>
+				<MerchantIdContext.Provider value={{ confirmedMerchantId, setConfirmedMerchantId }}>
 					<CartContext.Provider value={{ cart, setCart }}>
 						<Tab.Navigator
 							screenOptions={({ route }) => ({
@@ -72,7 +79,7 @@ export default () => {
 							<Tab.Screen name="Cart" component={CartStackScreen} />
 						</Tab.Navigator>
 					</CartContext.Provider>
-				</MerchantContext.Provider>
+				</MerchantIdContext.Provider>
 			) : (
 				<AuthContext.Provider value={{ setIsAuth }}>
 					<StartStackScreen />
