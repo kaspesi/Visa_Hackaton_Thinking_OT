@@ -1,9 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-export default ({ children, buttonPressHandler }) => {
+export default ({ children, buttonPressHandler, color }) => {
 	return (
-		<TouchableOpacity onPress={buttonPressHandler} style={styles.buttonContainer}>
+		<TouchableOpacity
+			onPress={buttonPressHandler}
+			style={color ? { ...styles.buttonContainer, backgroundColor: color } : styles.buttonContainer}
+		>
 			<Text style={styles.buttonText}>{children}</Text>
 		</TouchableOpacity>
 	);
