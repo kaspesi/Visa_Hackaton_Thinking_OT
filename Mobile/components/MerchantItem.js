@@ -29,13 +29,7 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 	);
 
 	const addToCart = async () => {
-		// console.log('cart length', cart.length);
-		// console.log('item merchant id', merchantId);
-		// console.log('confirmed merchant id', confirmedMerchantId);
-
 		if (merchantId !== confirmedMerchantId && cart.length !== 0) {
-			console.log('first');
-
 			Alert.alert(
 				'Rejected Buy!',
 				'You have an item from another merchant in your cart, please remove it first.',
@@ -51,8 +45,6 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 		}
 
 		if (cart.length === 0) {
-			console.log('second');
-
 			setConfirmedMerchantId(merchantId);
 			setCart([
 				{
@@ -63,7 +55,7 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 				}
 			]);
 
-			Alert.alert('Item added!', 'You should see the item in cart', [
+			Alert.alert('Item added!', 'You should see the item in cart.', [
 				{
 					text: 'Okay Sure',
 					style: 'default'
@@ -74,8 +66,6 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 		}
 
 		if (merchantId === confirmedMerchantId) {
-			console.log('third');
-
 			const foundIndex = cart.findIndex((item) => item.itemId === itemId);
 
 			let itemExists;
@@ -84,10 +74,7 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 
 			if (itemExists) {
 				const tempCart = cart;
-				tempCart[foundIndex].quantity = cart[foundIndex].quantity + 1;
-
-				console.log('temp', tempCart);
-
+				tempCart[foundIndex].quantity += 1;
 				setCart([ ...tempCart ]);
 			} else {
 				setCart([
@@ -149,10 +136,10 @@ const styles = StyleSheet.create({
 		padding: 5
 	},
 	itemName: {
-		fontSize: 20
+		fontSize: 18
 	},
 	itemPrice: {
-		fontSize: 16,
+		fontSize: 14,
 		color: 'green'
 	}
 });

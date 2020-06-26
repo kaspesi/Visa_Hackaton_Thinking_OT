@@ -18,8 +18,8 @@ export default () => {
 				}
 			}}
 		>
-			<CartStack.Screen name="Cart" component={CartScreen} />
-			<CartStack.Screen name="Checkout" component={CheckoutScreen} />
+			<CartStack.Screen name="Cart" component={CartScreen} options={{ title: 'Cart Items' }} />
+			<CartStack.Screen name="Checkout" component={CheckoutScreen} options={{ title: 'Checkout!' }} />
 		</CartStack.Navigator>
 	);
 };

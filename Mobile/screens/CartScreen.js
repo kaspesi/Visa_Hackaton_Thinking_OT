@@ -4,31 +4,21 @@ import Button from '../components/Button';
 import MerchantIdContext from '../context/MerchantIdContext';
 import CartContext from '../context/CartContext';
 
-export default () => {
+export default ({ navigation }) => {
 	const { confirmedMerchantId, setConfirmedMerchantId } = useContext(MerchantIdContext);
 	const { cart, setCart } = useContext(CartContext);
 
-	console.log(cart);
-
-	const printAsync = async () => {
-		console.log(await AsyncStorage.getItem('token'));
-		console.log(await AsyncStorage.getItem('merchantId'));
-		console.log(await AsyncStorage.getItem('cart'));
-	};
-	printAsync();
-
-	const clearAsyncStorage = async () => {
-		console.log('clear runs');
+	const clearEverything = async () => {
 		await AsyncStorage.removeItem('token');
 		await AsyncStorage.removeItem('merchantId');
 		await AsyncStorage.removeItem('cart');
 
-		// force a rerender?
+		setConfirmedMerchantId(-1);
+		setCart([]);
 	};
 
 	return (
 		<View>
-			<Text>This is the cart screen</Text>
 			{cart.map((item) => {
 				return (
 					<View key={item.itemId}>
@@ -38,13 +28,10 @@ export default () => {
 					</View>
 				);
 			})}
-			<View>
-				{/* <Text>{AsyncStorage.getItem('token')}</Text>
-				<Text>{AsyncStorage.getItem('merchantId')}</Text>
-				<Text>{AsyncStorage.getItem('cart')}</Text> */}
-				<Text>{null}</Text>
-			</View>
-			<Button buttonPressHandler={clearAsyncStorage}>Clear</Button>
+			<Button buttonPressHandler={clearEverything}>Clear Everything</Button>
+
+			{/* I don't need to pass cart because I can just use context instead. */}
+			<Button buttonPressHandler={() => navigation.navigate('Checkout')}>Checkout</Button>
 		</View>
 	);
 };

@@ -33,7 +33,13 @@ export default () => {
 					title: 'Nearby Merchants'
 				}}
 			/>
-			<MerchantStack.Screen name="MerchantItems" component={MerchantItemsScreen} />
+			<MerchantStack.Screen
+				name="MerchantItems"
+				component={MerchantItemsScreen}
+				options={{
+					title: 'Merchant Items'
+				}}
+			/>
 		</MerchantStack.Navigator>
 	);
 };

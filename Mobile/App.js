@@ -34,11 +34,6 @@ export default () => {
 			const storageCartString = await AsyncStorage.getItem('cart');
 			const storageCart = JSON.parse(storageCartString);
 			if (storageCart !== null && storageCart.length !== 0) setCart(storageCart);
-
-			// CLEAR
-			// await AsyncStorage.removeItem('token');
-			// await AsyncStorage.removeItem('merchantId');
-			// await AsyncStorage.removeItem('cart');
 		};
 		effectCallback();
 	}, []);

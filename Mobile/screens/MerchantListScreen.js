@@ -5,7 +5,8 @@ import MerchantCard from '../components/MerchantCard';
 import * as Location from 'expo-location';
 
 export default ({ navigation }) => {
-	const [ location, setLocation ] = useState([]);
+	const [ latitude, setLatitude ] = useState();
+	const [ longitude, setLongitude ] = useState();
 	const [ errorMessage, setErrorMessage ] = useState('');
 	// const [ merchants, setMerchants ] = useState([]);
 
@@ -17,10 +18,13 @@ export default ({ navigation }) => {
 				setErrorMessage('Location Access Permission Was Denied');
 
 				return;
+
+				// Might be better to kick user back to home screen instead of setting error message.
 			}
 
 			let location = await Location.getCurrentPositionAsync();
-			setLocation(location);
+			setLatitude(location.coords.latitude);
+			setLongitude(location.coords.longitude);
 
 			// UNCOMMENT BELOW WHEN SERVER SETUP
 
@@ -57,35 +61,53 @@ export default ({ navigation }) => {
 	}, []);
 
 	return (
-		<View style={styles.screen}>
-			{errorMessage ? <Text>{errorMessage}</Text> : <Text>{JSON.stringify(location)}</Text>}
-			<Text />
-			<ScrollView style={styles.scroll}>
-				<View style={styles.merchantsWrapper}>
-					{merchants.map((merchant) => {
-						return (
-							<View key={merchant.id}>
-								<MerchantCard {...merchant} navigation={navigation} />
-							</View>
-						);
-					})}
+		<View style={styles.merchantList}>
+			<View style={styles.headerContainer}>
+				<Text style={styles.headerLocation}>Latitude: {latitude}</Text>
+
+				<Text style={styles.headerLocation}>Longitude: {longitude}</Text>
+			</View>
+
+			{errorMessage ? (
+				<Text style={errorMessage}>YOU DID NOT ALLOW LOCATION SERVICES</Text>
+			) : (
+				<View style={styles.listContainer}>
+					<ScrollView style={styles.scroll}>
+						<View style={styles.itemWrapper}>
+							{merchants.map((merchant) => {
+								return (
+									<View key={merchant.id}>
+										<MerchantCard {...merchant} navigation={navigation} />
+									</View>
+								);
+							})}
+						</View>
+					</ScrollView>
 				</View>
-			</ScrollView>
+			)}
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
-	screen: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center'
+	merchantList: {
+		backgroundColor: 'darksalmon'
 	},
 	scroll: {
-		width: '100%'
+		width: '100%',
+		height: '95%'
 	},
-	merchantsWrapper: {
-		alignItems: 'center',
-		justifyContent: 'center'
+	headerContainer: {
+		backgroundColor: 'firebrick',
+		width: '100%',
+		borderBottomWidth: 3
+	},
+	headerLocation: {
+		fontSize: 14,
+		fontWeight: '700'
+	},
+	errorMessage: {
+		color: 'red',
+		fontWeight: '700'
 	}
 });

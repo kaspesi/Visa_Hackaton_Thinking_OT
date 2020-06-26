@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
 	},
 	scroll: {
 		width: '100%',
-		height: '100%'
+		height: '85%'
 	},
 	headerContainer: {
-		backgroundColor: 'orangered',
+		backgroundColor: 'lightpink',
 		width: '100%',
 		padding: 20,
 		borderBottomWidth: 3
