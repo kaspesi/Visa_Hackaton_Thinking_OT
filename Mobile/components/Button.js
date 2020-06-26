@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 export default ({ children, buttonPressHandler, color }) => {
@@ -21,12 +21,16 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 25,
 		borderWidth: 0,
-		backgroundColor: 'palevioletred',
-		minWidth: '20%'
+		backgroundColor: '#415A77',
+		minWidth: '20%',
+		width:150,
+		marginBottom: 20,
 	},
 	buttonText: {
 		color: 'white',
 		fontSize: 16,
-		fontWeight: '700'
+		fontWeight: '700',
+		paddingLeft: 20,
+		paddingRight: 20,
 	}
 });

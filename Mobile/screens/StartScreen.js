@@ -7,10 +7,11 @@ export default ({ navigation }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.header}>
-				<View style={styles.headerTitleContainer}>
-					<Text style={styles.headerTitle}>Safe Checkout</Text>
-				</View>
 				<Logo />
+				<View style={styles.headerTitleContainer}>
+					<Text style={styles.headerTitle}>Welcome to the future of shopping</Text>
+				</View>
+				
 			</View>
 
 			<View style={styles.buttonsContainer}>
@@ -38,28 +39,30 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: '100%',
 		alignItems: 'center',
-		justifyContent: 'space-around',
-		backgroundColor: 'beige'
 	},
 	header: {
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor: '#778DA9',
+		width: '100%',
+		paddingTop:200,
+		paddingBottom: 100
+
 	},
 	headerTitleContainer: {
-		backgroundColor: 'orangered',
 		borderRadius: 20,
 		padding: 20,
 		marginBottom: 10
 	},
 	headerTitle: {
-		fontSize: 24,
+		fontSize: 16,
 		fontWeight: '700',
 		color: 'white'
 	},
 	buttonsContainer: {
-		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		width: '80%'
+		width: '80%',
+		marginTop: 50
 	}
 });

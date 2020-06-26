@@ -8,7 +8,7 @@ export default ({ navigation }) => {
 		<View style={styles.screen}>
 			<View style={styles.headerContainer}>
 				<View style={styles.headerTitleContainer}>
-					<Ionicons name="ios-contract" size={30} color="white" />
+					{/* <Ionicons name="ios-contract" size={30} color="white" /> */}
 					<Text style={styles.headerTitle}>Safe Checkout</Text>
 				</View>
 				<Text style={styles.headerDescription}>
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		backgroundColor: 'beige'
+		backgroundColor: 'white'
 	},
 	headerContainer: {
 		alignItems: 'center',

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, Alert } from 'react-native';
 import Button from '../components/Button';
+import Logo from '../components/Logo';
 
 export default ({ navigation }) => {
 	const [ emailInput, setEmailInput ] = useState('');
@@ -79,6 +80,7 @@ export default ({ navigation }) => {
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.screen}>
 				<View style={styles.header}>
+				<Logo />
 					<Text style={styles.headerText}>Register a New Account!</Text>
 				</View>
 
@@ -86,7 +88,7 @@ export default ({ navigation }) => {
 					<View style={styles.inputContainer}>
 						<Text style={styles.inputLabel}>Email: </Text>
 						<TextInput
-							style={{ ...styles.baseInput, ...styles.emailInput }}
+							style={{ ...styles.baseInput, ...styles.emailInput,...styles.inputField }}
 							onChangeText={(input) => setEmailInput(input)}
 							value={emailInput}
 							placeholder="email"
@@ -96,7 +98,7 @@ export default ({ navigation }) => {
 					<View style={styles.inputContainer}>
 						<Text style={styles.inputLabel}>Password: </Text>
 						<TextInput
-							style={{ ...styles.baseInput, ...styles.passwordInput }}
+							style={{ ...styles.baseInput, ...styles.passwordInpu,...styles.inputField }}
 							onChangeText={(input) => setPasswordInput(input)}
 							value={passwordInput}
 							placeholder="password"
@@ -106,7 +108,7 @@ export default ({ navigation }) => {
 					<View style={styles.inputContainer}>
 						<Text style={styles.inputLabel}>Confirm: </Text>
 						<TextInput
-							style={{ ...styles.baseInput, ...styles.confirmPasswordInput }}
+							style={{ ...styles.baseInput, ...styles.confirmPasswordInput,...styles.inputField }}
 							onChangeText={(input) => setConfirmPasswordInput(input)}
 							value={confirmPasswordInput}
 							placeholder="confirm"
@@ -129,14 +131,15 @@ const styles = StyleSheet.create({
 		width: '100%',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		backgroundColor: 'beige'
+		backgroundColor: 'white'
 	},
 	header: {
-		backgroundColor: 'palevioletred',
-		height: 80,
+		backgroundColor: '#778DA9',
+		height: 500,
 		width: '100%',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		paddingTop: 20,
 	},
 	headerText: {
 		fontSize: 22,
@@ -149,14 +152,15 @@ const styles = StyleSheet.create({
 		width: '90%',
 		alignItems: 'center',
 		justifyContent: 'space-around',
-		backgroundColor: 'paleturquoise',
+		backgroundColor: 'white',
 		padding: 20
 	},
 	inputContainer: {
 		width: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'space-between'
+		justifyContent: 'space-between',
+		marginTop: 50,
 	},
 	baseInput: {
 		backgroundColor: 'white',
@@ -169,10 +173,14 @@ const styles = StyleSheet.create({
 		fontWeight: '700'
 	},
 	buttonsContainer: {
-		marginBottom: 250,
+		marginBottom: 200,
+		marginTop: 50,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
 		width: '80%'
+	},
+	inputField:{
+		backgroundColor: '#E0E1DD'
 	}
 });
