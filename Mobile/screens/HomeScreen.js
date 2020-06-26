@@ -17,9 +17,7 @@ export default ({ navigation }) => {
 				<Text style={styles.headerDescription}>Shop At Your Favorite Stores With A Click Of A Button!</Text>
 			</View>
 			<View style={styles.buttonContainer}>
-				<Button buttonPressHandler={() => navigation.navigate('MerchantList')}>
-					<Text style={{fontFamily: ""}}>Nearby Merchants</Text>
-				</Button>
+				<Button buttonPressHandler={() => navigation.navigate('MerchantList')}>Nearby Merchants</Button>
 			</View>
 		</View>
 	);
@@ -52,8 +50,7 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		fontWeight: '700',
 		color: 'white',
-		marginLeft: 10,
-		fontFamily: ""
+		marginLeft: 10
 	},
 	headerDescription: {
 		fontWeight: '700',

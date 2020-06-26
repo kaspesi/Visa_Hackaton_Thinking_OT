@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, View, Text, AsyncStorage } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import MerchantItem from '../components/MerchantItem';
 import items from '../data/items';
 
 export default ({ route }) => {
-	const { id, street, city } = route.params;
+	const { id, name, street, city, state, country, zip } = route.params;
 
 	// const [ items, setItems ] = useState([]);
 
@@ -41,17 +41,15 @@ export default ({ route }) => {
 	}, []);
 
 	return (
-		<View>
-			<Text>This is the merchant items screen</Text>
-			<Text>
-				hello {id} {street} {city}
-			</Text>
+		<View style={styles.merchantItems}>
+			<View style={styles.headerContainer}>
+				<Text style={styles.headerTitle}>{name}</Text>
+				<Text style={styles.headerDescription}>
+					{street} {city} {state} {zip}
+				</Text>
+			</View>
 
 			<View style={styles.itemsContainer}>
-				<View style={styles.itemsTitleContainer}>
-					<Text style={styles.itemsTitle}>Available Items</Text>
-				</View>
-
 				<ScrollView style={styles.scroll}>
 					<View style={styles.itemsWrapper}>
 						{items.filter((item) => item.merchantId === id).map((item) => {
@@ -69,8 +67,24 @@ export default ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+	merchantItems: {
+		backgroundColor: 'darksalmon'
+	},
 	scroll: {
 		width: '100%',
 		height: '100%'
+	},
+	headerContainer: {
+		backgroundColor: 'orangered',
+		width: '100%',
+		padding: 20,
+		borderBottomWidth: 3
+	},
+	headerTitle: {
+		fontSize: 24,
+		fontWeight: '700'
+	},
+	headerDescription: {
+		fontSize: 14
 	}
 });

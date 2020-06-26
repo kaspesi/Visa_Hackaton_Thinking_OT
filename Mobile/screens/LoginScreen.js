@@ -103,12 +103,8 @@ export default ({ navigation }) => {
 				</View>
 
 				<View style={styles.buttonsContainer}>
-					<Button buttonPressHandler={() => navigation.goBack()}>
-						<Text style={{fontFamily: ""}}>Go Back</Text>
-					</Button>
-					<Button buttonPressHandler={loginButtonHandler}>
-						<Text style={{fontFamily: ""}}>Login</Text>
-					</Button>
+					<Button buttonPressHandler={() => navigation.goBack()}>Go Back</Button>
+					<Button buttonPressHandler={loginButtonHandler}>Login</Button>
 				</View>
 			</View>
 		</TouchableWithoutFeedback>
@@ -133,8 +129,7 @@ const styles = StyleSheet.create({
 	headerText: {
 		fontSize: 22,
 		fontWeight: '700',
-		color: 'white',
-		fontFamily: ""
+		color: 'white'
 	},
 	formContainer: {
 		borderRadius: 50,
