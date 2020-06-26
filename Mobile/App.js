@@ -17,7 +17,7 @@ import CartContext from './context/CartContext';
 const Tab = createBottomTabNavigator();
 
 export default () => {
-	const [ isAuth, setIsAuth ] = useState(true);
+	const [ isAuth, setIsAuth ] = useState(false);
 	// Both confirmedMerchantId and JSON.stringify(cart) will persist in AsyncStorage.
 	const [ confirmedMerchantId, setConfirmedMerchantId ] = useState(-1); // merchantId
 	const [ cart, setCart ] = useState([]);
