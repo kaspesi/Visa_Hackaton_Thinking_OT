@@ -29,7 +29,19 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 	);
 
 	const addToCart = async () => {
-		if (merchantId !== confirmedMerchantId && cart.length !== 0) {
+		if ((merchantId !== confirmedMerchantId) & (cart.length > 0)) {
+			console.log(
+				'first',
+				merchantId,
+				confirmedMerchantId,
+				cart.length,
+				merchantId !== confirmedMerchantId,
+				cart.length !== 0,
+				(merchantId !== confirmedMerchantId) & (cart.length > 0),
+				typeof merchantId,
+				typeof confirmedMerchantId
+			);
+
 			Alert.alert(
 				'Rejected Buy!',
 				'You have an item from another merchant in your cart, please remove it first.',

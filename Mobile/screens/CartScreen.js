@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, Text, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Text, AsyncStorage, ScrollView } from 'react-native';
 import Button from '../components/Button';
 import CartItem from '../components/CartItem';
 import MerchantIdContext from '../context/MerchantIdContext';
 import CartContext from '../context/CartContext';
 
 export default ({ navigation }) => {
-	const { confirmedMerchantId, setConfirmedMerchantId } = useContext(MerchantIdContext);
+	const { setConfirmedMerchantId } = useContext(MerchantIdContext);
 	const { cart, setCart } = useContext(CartContext);
 
 	const clearEverything = async () => {
@@ -18,19 +18,28 @@ export default ({ navigation }) => {
 		setCart([]);
 	};
 
+	const calculateCartTotal = () => {
+		let total = 0;
+		cart.map((item) => (total += item.price * item.quantity));
+		return total;
+	};
+
 	return (
 		<View style={styles.cartScreen}>
 			<View style={styles.cartItems}>
-				{cart.map((item) => {
-					return (
-						<View key={item.itemId}>
-							{/* <Text>
-							{item.itemId} {item.name} {item.price} {item.quantity}
-						</Text> */}
-							<CartItem {...item} />
-						</View>
-					);
-				})}
+				<ScrollView style={styles.scroll}>
+					{cart.map((item) => {
+						return (
+							<View key={item.itemId}>
+								<CartItem {...item} />
+							</View>
+						);
+					})}
+				</ScrollView>
+			</View>
+
+			<View style={styles.cartSummary}>
+				<Text style={styles.cartSummaryText}>Total: ${calculateCartTotal().toFixed(2)}</Text>
 			</View>
 
 			<View style={styles.buttonsContainer}>
@@ -46,14 +55,31 @@ export default ({ navigation }) => {
 const styles = StyleSheet.create({
 	cartScreen: {
 		flex: 1,
-		justifyContent: 'space-between',
-		alignContent: 'center'
+		alignContent: 'center',
+		backgroundColor: 'moccasin'
+	},
+	scroll: {
+		width: '100%',
+		height: '70%'
 	},
 	buttonsContainer: {
-		height: 120,
-		justifyContent: 'space-between',
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-around',
 		alignItems: 'center',
-		marginBottom: 30,
-		borderWidth: 2
+		backgroundColor: 'beige'
+	},
+	cartSummary: {
+		height: 70,
+		width: '100%',
+		backgroundColor: 'moccasin',
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	cartSummaryText: {
+		fontSize: 28,
+		fontWeight: '700',
+		color: 'green',
+		textAlign: 'center'
 	}
 });

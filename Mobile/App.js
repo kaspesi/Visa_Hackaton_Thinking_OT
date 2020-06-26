@@ -29,7 +29,9 @@ export default () => {
 			if (storageToken) setIsAuth(true);
 
 			const storageMerchantId = await AsyncStorage.getItem('merchantId');
-			if (storageMerchantId !== null && storageMerchantId !== -1) setConfirmedMerchantId(storageMerchantId);
+			if (storageMerchantId !== null && storageMerchantId !== -1)
+				setConfirmedMerchantId(parseInt(storageMerchantId, 10));
+			console.log(storageMerchantId);
 
 			const storageCartString = await AsyncStorage.getItem('cart');
 			const storageCart = JSON.parse(storageCartString);
