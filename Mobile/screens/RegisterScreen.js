@@ -41,7 +41,7 @@ export default ({ navigation }) => {
 		}
 
 		// POST /register fetch -> backend should check if there is an existing email in database.
-		const response = await fetch('https://spendsafe-api.herokuapp.com/register', {
+		const response = await fetch('https://frozen-peak-79158.herokuapp.com/register', {
 			method: 'post',
 			headers: {
 				'content-type': 'application/json'
