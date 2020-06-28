@@ -41,58 +41,45 @@ export default ({ navigation }) => {
 			return;
 		}
 
-		Alert.alert('Login Clicked!', 'Will redirect to home screen by changing auth state.', [
+		const response = await fetch('https://frozen-peak-79158.herokuapp.com/login', {
+			method: 'post',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: emailInput,
+				password: passwordInput
+			})
+		});
+
+		const data = await response.json();
+
+		// Failed to login, clear input and alert the user.
+		if (!data.success) {
+			setEmailInput('');
+			setPasswordInput('');
+
+			Alert.alert('Failed To Login!', 'Sorry, it seems that the login was not successful. Please try again.', [
+				{
+					text: 'Okay Sure',
+					style: 'default'
+				}
+			]);
+
+			return;
+		}
+
+		// Set the JWT Token into AsyncStorage to persist authenticated state.
+		await AsyncStorage.setItem('token', data.token);
+
+		// Set isAuth to true in order to render the normal Home Screen.
+		Alert.alert('Login Successful!', 'Will redirect to home screen by changing auth state.', [
 			{
 				text: 'Okay Sure',
 				style: 'default',
 				onPress: () => setIsAuth(true)
 			}
 		]);
-
-		// UNCOMMENT BELOW WHEN SERVER SETUP
-
-		// // POST /register fetch -> backend should verify that this user exists with this email and password.
-		// const response = await fetch('http://localhost:3001/login', {
-		// 	method: 'post',
-		// 	headers: {
-		// 		'content-type': 'application/json'
-		// 	},
-		// 	body: JSON.stringify({
-		// 		email: emailInput,
-		// 		password: passwordInput
-		// 	})
-		// });
-
-		// const data = await response.json();
-		// /**
-		//  * is expect data to be a JS object with
-		//  * {
-		//  * 	success: boolean,
-		//  * 	errorMessage: string,
-		//  * 	token: JWTTOKEN -> should be a string
-		//  * }
-		//  */
-
-		// // Failed to login, clear input and alert the user.
-		// if (!data.success) {
-		// 	setEmailInput('');
-		// 	setPasswordInput('');
-
-		// 	Alert.alert('Failed To Login!', 'Sorry, it seems that the login was not successful. Please try again.', [
-		// 		{
-		// 			text: 'Okay Sure',
-		// 			style: 'default'
-		// 		}
-		// 	]);
-
-		// 	return;
-		// }
-
-		// // Set the JWT Token into AsyncStorage to persist authenticated state.
-		// await AsyncStorage.setItem('token', data.token);
-
-		// // Set isAuth to true in order to render the normal Home Screen.
-		// return setIsAuth(true);
 	};
 
 	return (
