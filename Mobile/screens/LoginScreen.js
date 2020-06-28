@@ -14,12 +14,33 @@ import Button from '../components/Button';
 import Logo from '../components/Logo';
 
 export default ({ navigation }) => {
-	const [ emailInput, setEmailInput ] = useState('');
-	const [ passwordInput, setPasswordInput ] = useState('');
+	const [ emailInput, setEmailInput ] = useState('user@gmail.com');
+	const [ passwordInput, setPasswordInput ] = useState('abcd');
 
 	const { setIsAuth } = useContext(AuthContext);
 
 	const loginButtonHandler = async () => {
+		const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if (!emailRegex.test(emailInput.toLowerCase())) {
+			Alert.alert('Invalid Email!', 'Please enter a valid email.', [
+				{
+					text: 'Okay Sure',
+					style: 'default'
+				}
+			]);
+			return;
+		}
+
+		if (passwordInput.length < 1) {
+			Alert.alert('Invalid Password!', 'Your password needs to be at least 1 character.', [
+				{
+					text: 'Okay Sure',
+					style: 'default'
+				}
+			]);
+			return;
+		}
+
 		Alert.alert('Login Clicked!', 'Will redirect to home screen by changing auth state.', [
 			{
 				text: 'Okay Sure',
@@ -78,7 +99,7 @@ export default ({ navigation }) => {
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.screen}>
 				<View style={styles.header}>
-					<Logo />
+					<Logo dimensions={{ height: 50, width: 50 }} />
 					<Text style={styles.headerText}>Login to Start Shopping!</Text>
 				</View>
 
@@ -86,7 +107,7 @@ export default ({ navigation }) => {
 					<View style={styles.inputContainer}>
 						<Text style={styles.inputLabel}>Email: </Text>
 						<TextInput
-							style={{ ...styles.baseInput, ...styles.emailInput,...styles.inputField }}
+							style={{ ...styles.baseInput, ...styles.emailInput, ...styles.inputField }}
 							onChangeText={(input) => setEmailInput(input)}
 							value={emailInput}
 							placeholder="email"
@@ -123,11 +144,10 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		backgroundColor: '#778DA9',
-		height: 500,
 		width: '100%',
+		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'center',
-		paddingTop: 20,
+		justifyContent: 'space-around'
 	},
 	headerText: {
 		fontSize: 22,
@@ -161,14 +181,14 @@ const styles = StyleSheet.create({
 		fontWeight: '700'
 	},
 	buttonsContainer: {
-		marginBottom: 100,
-		marginTop: 100,
+		marginBottom: 250,
+		marginTop: 50,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
 		width: '80%'
 	},
-	inputField:{
+	inputField: {
 		backgroundColor: '#E0E1DD'
 	}
 });

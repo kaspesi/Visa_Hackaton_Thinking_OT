@@ -9,78 +9,85 @@ export default ({ navigation }) => {
 	const [ confirmPasswordInput, setConfirmPasswordInput ] = useState('');
 
 	const registerButtonHandler = async () => {
-		Alert.alert('Register Clicked!', 'Will redirect to login screen.', [
+		const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if (!emailRegex.test(emailInput.toLowerCase())) {
+			Alert.alert('Invalid Email!', 'Please enter a valid email.', [
+				{
+					text: 'Okay Sure',
+					style: 'default'
+				}
+			]);
+			return;
+		}
+
+		if (passwordInput.length < 1) {
+			Alert.alert('Invalid Password!', 'Your password needs to be at least 1 character.', [
+				{
+					text: 'Okay Sure',
+					style: 'default'
+				}
+			]);
+			return;
+		}
+
+		if (passwordInput !== confirmPasswordInput) {
+			Alert.alert('Invalid Confirm!', 'Your passwords do not match.', [
+				{
+					text: 'Okay Sure',
+					style: 'default'
+				}
+			]);
+			return;
+		}
+
+		// POST /register fetch -> backend should check if there is an existing email in database.
+		const response = await fetch('https://spendsafe-api.herokuapp.com/register', {
+			method: 'post',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: emailInput,
+				password: passwordInput
+			})
+		});
+
+		const data = await response.json();
+
+		// Failed to register, clear input and alert the user.
+		if (!data.success) {
+			setEmailInput('');
+			setPasswordInput('');
+			setConfirmPasswordInput('');
+
+			Alert.alert(
+				'Failed To Register!',
+				'Sorry, it seems that the register was not successful. Please try again.',
+				[
+					{
+						text: 'Okay Sure',
+						style: 'default'
+					}
+				]
+			);
+
+			return;
+		}
+
+		Alert.alert('Successfully Registered!', 'You will be redirected to the login screen.', [
 			{
 				text: 'Okay Sure',
 				style: 'default',
 				onPress: () => navigation.navigate('Login')
 			}
 		]);
-
-		// UNCOMMENT BELOW WHEN SERVER SETUP
-
-		// // Validate that the password and confirm are the same.
-		// if (passwordInput !== confirmPasswordInput) {
-		// 	Alert.alert('Failed To Register!', 'Your password and confirm input do not match. Please try again.', [
-		// 		{
-		// 			text: 'Okay Sure',
-		// 			style: 'default'
-		// 		}
-		// 	]);
-
-		// 	return;
-		// }
-
-		// // POST /register fetch -> backend should check if there is an existing email in database.
-		// const response = await fetch('http://localhost:3001/register', {
-		// 	method: 'post',
-		// 	headers: {
-		// 		'content-type': 'application/json'
-		// 	},
-		// 	body: JSON.stringify({
-		// 		email: emailInput,
-		// 		password: passwordInput
-		// 	})
-		// });
-
-		// const data = await response.json();
-		// /**
-		//  * is expect data to be a JS object with
-		//  * {
-		//  * 	success: boolean,
-		//  * 	errorMessage: string
-		//  * }
-		//  */
-
-		// // Failed to register, clear input and alert the user.
-		// if (!data.success) {
-		// 	setEmailInput('');
-		// 	setPasswordInput('');
-		// 	setConfirmPasswordInput('');
-
-		// 	Alert.alert(
-		// 		'Failed To Register!',
-		// 		'Sorry, it seems that the register was not successful. Please try again.',
-		// 		[
-		// 			{
-		// 				text: 'Okay Sure',
-		// 				style: 'default'
-		// 			}
-		// 		]
-		// 	);
-
-		// 	return;
-		// }
-
-		// // Successfully registered, navigate to login screen.
-		// return navigation.navigate('Login');
 	};
 
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.screen}>
 				<View style={styles.header}>
-				<Logo />
+					<Logo dimensions={{ height: 50, width: 50 }} />
 					<Text style={styles.headerText}>Register a New Account!</Text>
 				</View>
 
@@ -88,7 +95,7 @@ export default ({ navigation }) => {
 					<View style={styles.inputContainer}>
 						<Text style={styles.inputLabel}>Email: </Text>
 						<TextInput
-							style={{ ...styles.baseInput, ...styles.emailInput,...styles.inputField }}
+							style={{ ...styles.baseInput, ...styles.emailInput, ...styles.inputField }}
 							onChangeText={(input) => setEmailInput(input)}
 							value={emailInput}
 							placeholder="email"
@@ -98,7 +105,7 @@ export default ({ navigation }) => {
 					<View style={styles.inputContainer}>
 						<Text style={styles.inputLabel}>Password: </Text>
 						<TextInput
-							style={{ ...styles.baseInput, ...styles.passwordInpu,...styles.inputField }}
+							style={{ ...styles.baseInput, ...styles.passwordInpu, ...styles.inputField }}
 							onChangeText={(input) => setPasswordInput(input)}
 							value={passwordInput}
 							placeholder="password"
@@ -108,7 +115,7 @@ export default ({ navigation }) => {
 					<View style={styles.inputContainer}>
 						<Text style={styles.inputLabel}>Confirm: </Text>
 						<TextInput
-							style={{ ...styles.baseInput, ...styles.confirmPasswordInput,...styles.inputField }}
+							style={{ ...styles.baseInput, ...styles.confirmPasswordInput, ...styles.inputField }}
 							onChangeText={(input) => setConfirmPasswordInput(input)}
 							value={confirmPasswordInput}
 							placeholder="confirm"
@@ -135,11 +142,10 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		backgroundColor: '#778DA9',
-		height: 500,
 		width: '100%',
+		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'center',
-		paddingTop: 20,
+		justifyContent: 'center'
 	},
 	headerText: {
 		fontSize: 22,
@@ -153,14 +159,14 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-around',
 		backgroundColor: 'white',
-		padding: 20
+		padding: 10
 	},
 	inputContainer: {
 		width: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		marginTop: 50,
+		marginTop: 50
 	},
 	baseInput: {
 		backgroundColor: 'white',
@@ -173,14 +179,14 @@ const styles = StyleSheet.create({
 		fontWeight: '700'
 	},
 	buttonsContainer: {
-		marginBottom: 200,
+		marginBottom: 250,
 		marginTop: 50,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
 		width: '80%'
 	},
-	inputField:{
+	inputField: {
 		backgroundColor: '#E0E1DD'
 	}
 });

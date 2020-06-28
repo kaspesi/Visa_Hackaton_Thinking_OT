@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { View, Text, StyleSheet, AsyncStorage } from 'react-native';
-import Button from '../components/Button';
+import QuantityButton from '../components/QuantityButton';
 import MerchantIdContext from '../context/MerchantIdContext';
 import CartContext from '../context/CartContext';
 
@@ -58,12 +58,12 @@ export default ({ itemId, name, price, quantity }) => {
 	return (
 		<View style={styles.cartItem}>
 			<View style={styles.quantityButtonsContainer}>
-				<Button buttonPressHandler={addQuantity} color="green">
+				<QuantityButton buttonPressHandler={addQuantity} color="green">
 					+
-				</Button>
-				<Button buttonPressHandler={subtractQuantity} color="crimson">
+				</QuantityButton>
+				<QuantityButton buttonPressHandler={subtractQuantity} color="crimson">
 					-
-				</Button>
+				</QuantityButton>
 			</View>
 
 			<View style={styles.itemDetailsContainer}>

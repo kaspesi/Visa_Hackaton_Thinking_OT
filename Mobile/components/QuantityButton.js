@@ -17,17 +17,16 @@ const styles = StyleSheet.create({
 		padding: 15,
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderRadius: 25,
+		borderRadius: 1000,
 		backgroundColor: '#415A77',
-		minWidth: 150,
-		maxWidth: 250,
+		height: 50,
+		width: 80,
 		marginBottom: 20
 	},
 	buttonText: {
+		textAlign: 'center',
 		color: 'white',
-		fontSize: 16,
-		fontWeight: '700',
-		paddingLeft: 20,
-		paddingRight: 20
+		fontSize: 20,
+		fontWeight: '700'
 	}
 });

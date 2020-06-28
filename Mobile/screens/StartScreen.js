@@ -11,7 +11,6 @@ export default ({ navigation }) => {
 				<View style={styles.headerTitleContainer}>
 					<Text style={styles.headerTitle}>Welcome to the future of shopping</Text>
 				</View>
-				
 			</View>
 
 			<View style={styles.buttonsContainer}>
@@ -38,16 +37,15 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		alignItems: 'center',
+		alignItems: 'center'
 	},
 	header: {
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#778DA9',
 		width: '100%',
-		paddingTop:200,
-		paddingBottom: 100
-
+		paddingTop: 20,
+		paddingBottom: 20
 	},
 	headerTitleContainer: {
 		borderRadius: 20,
