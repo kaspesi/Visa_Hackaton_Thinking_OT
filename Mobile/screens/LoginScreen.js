@@ -14,8 +14,8 @@ import Button from '../components/Button';
 import Logo from '../components/Logo';
 
 export default ({ navigation }) => {
-	const [ emailInput, setEmailInput ] = useState('user@gmail.com');
-	const [ passwordInput, setPasswordInput ] = useState('abcd');
+	const [ emailInput, setEmailInput ] = useState('');
+	const [ passwordInput, setPasswordInput ] = useState('');
 
 	const { setIsAuth } = useContext(AuthContext);
 

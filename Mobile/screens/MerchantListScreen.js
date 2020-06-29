@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ScrollView, AsyncStorage, Alert } from 'react-native';
-import merchants from '../data/merchants';
+// import merchants from '../data/merchants';
 import MerchantCard from '../components/MerchantCard';
 import * as Location from 'expo-location';
 
@@ -8,7 +8,7 @@ export default ({ navigation }) => {
 	const [ latitude, setLatitude ] = useState();
 	const [ longitude, setLongitude ] = useState();
 	const [ errorMessage, setErrorMessage ] = useState('');
-	// const [ merchants, setMerchants ] = useState([]);
+	const [ merchants, setMerchants ] = useState([]);
 
 	useEffect(() => {
 		const asyncEffect = async () => {
@@ -26,35 +26,24 @@ export default ({ navigation }) => {
 			setLatitude(location.coords.latitude);
 			setLongitude(location.coords.longitude);
 
-			// UNCOMMENT BELOW WHEN SERVER SETUP
+			const response = await fetch(
+				`https://frozen-peak-79158.herokuapp.com/nearby-merchants?latitude=${location.coords.latitude.toString()}&longitude=${location.coords.longitude.toString()}`
+			);
+			const data = await response.json();
 
-			// // Now we do a POST request to /merchants giving longitude, latitude, and JWT as auth header.
-			// const response = await fetch('http://localhost:3001/merchants', {
-			// 	method: 'post',
-			// 	headers: {
-			// 		'content-type': 'application/json',
-			// 		authorization: AsyncStorage.getItem('token')
-			// 	},
-			// 	body: JSON.stringify({
-			// 		longitude: location.coords.longitude,
-			// 		latitude: location.coords.latitude
-			// 	})
-			// });
-			// const data = await response.json();
+			if (!data.success) {
+				Alert.alert('Failed To Get Nearby Stores', 'Backend failed to get merchants for some reason.', [
+					{
+						text: 'Okay Sure',
+						style: 'default'
+					}
+				]);
 
-			// if (!data.success) {
-			// 	Alert.alert('Failed To Get Nearby Stores', 'Backend failed to get merchants for some reason.', [
-			// 		{
-			// 			text: 'Okay Sure',
-			// 			style: 'default'
-			// 		}
-			// 	]);
+				return;
+			}
 
-			// 	return;
-			// }
-
-			// // Otherwise set merchants to []{} and render the merchant list with the data.
-			// setMerchants(data.merchants);
+			// Otherwise set merchants to []{} and render the merchant list with the data.
+			setMerchants(data.nearby_stores);
 		};
 
 		asyncEffect();
@@ -74,13 +63,15 @@ export default ({ navigation }) => {
 				<View style={styles.listContainer}>
 					<ScrollView style={styles.scroll}>
 						<View style={styles.itemWrapper}>
-							{merchants.map((merchant) => {
-								return (
-									<View key={merchant.id}>
-										<MerchantCard {...merchant} navigation={navigation} />
-									</View>
-								);
-							})}
+							{merchants.length ? (
+								merchants.map((merchant) => {
+									return (
+										<View key={merchant.merch_id}>
+											<MerchantCard {...merchant} navigation={navigation} />
+										</View>
+									);
+								})
+							) : null}
 						</View>
 					</ScrollView>
 				</View>
