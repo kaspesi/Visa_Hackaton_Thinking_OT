@@ -9,10 +9,10 @@ export default ({ navigation }) => {
 			<View style={styles.headerContainer}>
 				<View style={styles.headerTitleContainer}>
 					{/* <Ionicons name="ios-contract" size={30} color="white" /> */}
-					<Text style={styles.headerTitle}>Safe Checkout</Text>
+					<Text style={styles.headerTitle}>Spend Safe</Text>
 				</View>
 				<Text style={styles.headerDescription}>
-					SC is a revolutionary platform that streamlines shopping and checkout during COVID climate
+					Spend Safe is a revolutionary platform that streamlines shopping and checkout during COVID
 				</Text>
 				<Text style={styles.headerDescription}>Shop At Your Favorite Stores With A Click Of A Button!</Text>
 			</View>
