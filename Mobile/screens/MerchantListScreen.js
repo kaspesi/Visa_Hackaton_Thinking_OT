@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, ScrollView, AsyncStorage, Alert } from 'react-native';
-// import merchants from '../data/merchants';
+import { StyleSheet, View, Text, ScrollView, Alert } from 'react-native';
 import MerchantCard from '../components/MerchantCard';
 import * as Location from 'expo-location';
 
@@ -26,10 +25,16 @@ export default ({ navigation }) => {
 			setLatitude(location.coords.latitude);
 			setLongitude(location.coords.longitude);
 
+			console.log('fetch nearby merchants runs');
+
+			console.log(location.coords.latitude.toString(), location.coords.longitude.toString());
+
 			const response = await fetch(
 				`https://frozen-peak-79158.herokuapp.com/nearby-merchants?latitude=${location.coords.latitude.toString()}&longitude=${location.coords.longitude.toString()}`
 			);
 			const data = await response.json();
+
+			console.log('fetch nearby merchants ends');
 
 			if (!data.success) {
 				Alert.alert('Failed To Get Nearby Stores', 'Backend failed to get merchants for some reason.', [

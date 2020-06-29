@@ -10,7 +10,7 @@ export default ({ navigation }) => {
 	const { cart, setCart } = useContext(CartContext);
 
 	const clearEverything = async () => {
-		await AsyncStorage.removeItem('token');
+		// await AsyncStorage.removeItem('token');
 		await AsyncStorage.removeItem('merchantId');
 		await AsyncStorage.removeItem('cart');
 

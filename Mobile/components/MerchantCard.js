@@ -2,26 +2,25 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Button from '../components/Button';
 
-export default ({ id, name, street, city, state, country, zip, navigation }) => {
+export default ({ merch_id, name, latitude, longitude, navigation }) => {
 	return (
 		<View style={styles.merchantCard}>
 			<View style={styles.merchantTitleContainer}>
-				<Text style={styles.merchantName}>{name} some really long name i mean really long</Text>
+				<Text style={styles.merchantName}>
+					{merch_id} {name}
+				</Text>
 				<Text style={styles.merchantAddress}>
-					{street} {city} {state} really long address really long
+					{latitude} {longitude}
 				</Text>
 			</View>
 
 			<Button
 				buttonPressHandler={() =>
 					navigation.navigate('MerchantItems', {
-						id,
+						merch_id,
 						name,
-						street,
-						city,
-						state,
-						country,
-						zip
+						latitude,
+						longitude
 					})}
 			>
 				Details

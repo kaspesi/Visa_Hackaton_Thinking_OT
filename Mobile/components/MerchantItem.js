@@ -4,7 +4,7 @@ import Button from './Button';
 import MerchantIdContext from '../context/MerchantIdContext';
 import CartContext from '../context/CartContext';
 
-export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
+export default ({ item_id, name, price, merch_id }) => {
 	const { confirmedMerchantId, setConfirmedMerchantId } = useContext(MerchantIdContext);
 	const { cart, setCart } = useContext(CartContext);
 
@@ -29,16 +29,16 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 	);
 
 	const addToCart = async () => {
-		if ((merchantId !== confirmedMerchantId) & (cart.length > 0)) {
+		if ((merch_id !== confirmedMerchantId) & (cart.length > 0)) {
 			console.log(
 				'first',
-				merchantId,
+				merch_id,
 				confirmedMerchantId,
 				cart.length,
-				merchantId !== confirmedMerchantId,
+				merch_id !== confirmedMerchantId,
 				cart.length !== 0,
-				(merchantId !== confirmedMerchantId) & (cart.length > 0),
-				typeof merchantId,
+				(merch_id !== confirmedMerchantId) & (cart.length > 0),
+				typeof merch_id,
 				typeof confirmedMerchantId
 			);
 
@@ -57,10 +57,10 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 		}
 
 		if (cart.length === 0) {
-			setConfirmedMerchantId(merchantId);
+			setConfirmedMerchantId(merch_id);
 			setCart([
 				{
-					itemId,
+					itemId: item_id,
 					name,
 					price,
 					quantity: 1
@@ -77,8 +77,8 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 			return;
 		}
 
-		if (merchantId === confirmedMerchantId) {
-			const foundIndex = cart.findIndex((item) => item.itemId === itemId);
+		if (merch_id === confirmedMerchantId) {
+			const foundIndex = cart.findIndex((item) => item.itemId === item_id);
 
 			let itemExists;
 			if (foundIndex === -1) itemExists = false;
@@ -92,7 +92,7 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 				setCart([
 					...cart,
 					{
-						itemId,
+						itemId: item_id,
 						name,
 						price,
 						quantity: 1
@@ -110,6 +110,8 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 			return;
 		}
 
+		console.log(item_id, name, price, merch_id);
+
 		Alert.alert('Error!', 'Did not account for this case.', [
 			{
 				text: 'Okay Sure',
@@ -121,7 +123,9 @@ export default ({ itemId, merchantId, name, price, stock, qrCode }) => {
 	return (
 		<View style={styles.merchantItem}>
 			<View style={styles.itemTitleContainer}>
-				<Text style={styles.itemName}>{name} some really long name i mean really long</Text>
+				<Text style={styles.itemName}>
+					{item_id} {name} some really long name i mean really long
+				</Text>
 				<Text style={styles.itemPrice}>Price: ${price}</Text>
 			</View>
 
