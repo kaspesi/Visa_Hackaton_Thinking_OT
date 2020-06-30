@@ -9,7 +9,7 @@ export default () => {
 		<ScannerStack.Navigator
 			screenOptions={{
 				headerStyle: {
-					backgroundColor: 'palevioletred'
+					backgroundColor: '#778DA9'
 				},
 				headerTintColor: 'white',
 				headerTitleStyle: {

@@ -1,20 +1,18 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import Button from '../components/Button';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import landing from '../assets/landing.png';
 
 export default ({ navigation }) => {
 	return (
 		<View style={styles.screen}>
 			<View style={styles.headerContainer}>
 				<View style={styles.headerTitleContainer}>
-					{/* <Ionicons name="ios-contract" size={30} color="white" /> */}
 					<Text style={styles.headerTitle}>Spend Safe</Text>
 				</View>
-				<Text style={styles.headerDescription}>
-					Spend Safe is a revolutionary platform that streamlines shopping and checkout during COVID
-				</Text>
-				<Text style={styles.headerDescription}>Shop At Your Favorite Stores With A Click Of A Button!</Text>
+			</View>
+			<View style={styles.bodyContainer}>
+				<Image source={landing} style={styles.landing} />
 			</View>
 			<View style={styles.buttonContainer}>
 				<Button buttonPressHandler={() => navigation.navigate('MerchantList')}>Nearby Merchants</Button>
@@ -27,18 +25,18 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 		justifyContent: 'space-between',
-		alignItems: 'center',
-		backgroundColor: 'white'
+		alignItems: 'center'
 	},
 	headerContainer: {
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		height: '50%',
-		width: '100%'
+		// height: '50%',
+		width: '100%',
+		zIndex: 1
 	},
 	headerTitleContainer: {
 		padding: 30,
-		backgroundColor: 'orangered',
+		backgroundColor: 'cornflowerblue',
 		justifyContent: 'center',
 		alignItems: 'center',
 		flexDirection: 'row',
@@ -57,7 +55,18 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		textAlign: 'center'
 	},
+	landing: {
+		height: '100%',
+		width: '100%',
+		zIndex: 2
+	},
+	bodyContainer: {
+		flex: 1,
+		alignItems: 'center',
+		width: '100%'
+	},
 	buttonContainer: {
-		marginBottom: 100
+		position: 'absolute',
+		bottom: 30
 	}
 });
