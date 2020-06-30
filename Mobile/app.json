@@ -1,7 +1,7 @@
 {
 	"expo": {
-		"name": "mobile",
-		"slug": "mobile",
+		"name": "Spend Safe",
+		"slug": "spend_safe",
 		"platforms": [ "ios", "android", "web" ],
 		"version": "1.0.0",
 		"orientation": "portrait",
