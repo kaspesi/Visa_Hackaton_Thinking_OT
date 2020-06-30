@@ -46,39 +46,41 @@ export default () => {
 		// If we are authenticated, show the home screen, otherwise show the start screen with register/login.
 		<NavigationContainer>
 			{isAuth ? (
-				<MerchantIdContext.Provider value={{ confirmedMerchantId, setConfirmedMerchantId }}>
-					<CartContext.Provider value={{ cart, setCart }}>
-						<Tab.Navigator
-							screenOptions={({ route }) => ({
-								tabBarIcon: () => {
-									let iconName;
+				<AuthContext.Provider value={{ setIsAuth }}>
+					<MerchantIdContext.Provider value={{ confirmedMerchantId, setConfirmedMerchantId }}>
+						<CartContext.Provider value={{ cart, setCart }}>
+							<Tab.Navigator
+								screenOptions={({ route }) => ({
+									tabBarIcon: () => {
+										let iconName;
 
-									if (route.name === 'Merchant') {
-										iconName = 'ios-home';
-									} else if (route.name === 'Scanner') {
-										iconName = 'md-qr-scanner';
-									} else if (route.name === 'Cart') {
-										iconName = 'ios-cart';
+										if (route.name === 'Merchant') {
+											iconName = 'ios-home';
+										} else if (route.name === 'Scanner') {
+											iconName = 'md-qr-scanner';
+										} else if (route.name === 'Cart') {
+											iconName = 'ios-cart';
+										}
+
+										return <Ionicons name={iconName} size={30} color="white" />;
 									}
-
-									return <Ionicons name={iconName} size={30} color="white" />;
-								}
-							})}
-							tabBarOptions={{
-								activeTintColor: 'tomato',
-								inactiveTintColor: 'gray',
-								style: {
-									height: 70,
-									backgroundColor: 'black'
-								}
-							}}
-						>
-							<Tab.Screen name="Merchant" component={MerchantStackScreen} />
-							<Tab.Screen name="Scanner" component={ScannerStackScreen} />
-							<Tab.Screen name="Cart" component={CartStackScreen} />
-						</Tab.Navigator>
-					</CartContext.Provider>
-				</MerchantIdContext.Provider>
+								})}
+								tabBarOptions={{
+									activeTintColor: 'tomato',
+									inactiveTintColor: 'gray',
+									style: {
+										height: 70,
+										backgroundColor: 'black'
+									}
+								}}
+							>
+								<Tab.Screen name="Merchant" component={MerchantStackScreen} />
+								<Tab.Screen name="Scanner" component={ScannerStackScreen} />
+								<Tab.Screen name="Cart" component={CartStackScreen} />
+							</Tab.Navigator>
+						</CartContext.Provider>
+					</MerchantIdContext.Provider>
+				</AuthContext.Provider>
 			) : (
 				<AuthContext.Provider value={{ setIsAuth }}>
 					<StartStackScreen />
