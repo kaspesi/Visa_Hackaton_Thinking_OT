@@ -47,6 +47,8 @@ export default () => {
 			}
 		]);
 
+		console.log(cart);
+
 		console.log(
 			'data',
 			number,
@@ -60,7 +62,8 @@ export default () => {
 			locality,
 			administrativeArea,
 			postalCode,
-			phoneNumber
+			phoneNumber,
+			cart
 		);
 
 		console.log('total', calculateCartTotal(), typeof calculateCartTotal());
