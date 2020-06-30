@@ -17,24 +17,16 @@ export default ({ navigation }) => {
 				setErrorMessage('Location Access Permission Was Denied');
 
 				return;
-
-				// Might be better to kick user back to home screen instead of setting error message.
 			}
 
 			let location = await Location.getCurrentPositionAsync();
 			setLatitude(location.coords.latitude);
 			setLongitude(location.coords.longitude);
 
-			console.log('fetch nearby merchants runs');
-
-			console.log(location.coords.latitude.toString(), location.coords.longitude.toString());
-
 			const response = await fetch(
 				`https://frozen-peak-79158.herokuapp.com/nearby-merchants?latitude=${location.coords.latitude.toString()}&longitude=${location.coords.longitude.toString()}`
 			);
 			const data = await response.json();
-
-			console.log('fetch nearby merchants ends');
 
 			if (!data.success) {
 				Alert.alert('Failed To Get Nearby Stores', 'Backend failed to get merchants for some reason.', [
@@ -89,20 +81,23 @@ export default ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	merchantList: {
-		backgroundColor: 'darksalmon'
+		backgroundColor: 'white'
 	},
 	scroll: {
 		width: '100%',
 		height: '95%'
 	},
 	headerContainer: {
-		backgroundColor: 'firebrick',
+		backgroundColor: 'cornflowerblue',
 		width: '100%',
-		borderBottomWidth: 3
+		height: 50,
+		justifyContent: 'center',
+		paddingLeft: 10
 	},
 	headerLocation: {
 		fontSize: 14,
-		fontWeight: '700'
+		fontWeight: '700',
+		color: 'white'
 	},
 	errorMessage: {
 		color: 'red',

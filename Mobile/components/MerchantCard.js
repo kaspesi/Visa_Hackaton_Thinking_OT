@@ -6,25 +6,22 @@ export default ({ merch_id, name, latitude, longitude, navigation }) => {
 	return (
 		<View style={styles.merchantCard}>
 			<View style={styles.merchantTitleContainer}>
-				<Text style={styles.merchantName}>
-					{merch_id} {name}
-				</Text>
-				<Text style={styles.merchantAddress}>
-					{latitude} {longitude}
-				</Text>
+				<Text style={styles.merchantName}>{name}</Text>
 			</View>
 
-			<Button
-				buttonPressHandler={() =>
-					navigation.navigate('MerchantItems', {
-						merch_id,
-						name,
-						latitude,
-						longitude
-					})}
-			>
-				Details
-			</Button>
+			<View style={styles.buttonContainer}>
+				<Button
+					buttonPressHandler={() =>
+						navigation.navigate('MerchantItems', {
+							merch_id,
+							name,
+							latitude,
+							longitude
+						})}
+				>
+					Details
+				</Button>
+			</View>
 		</View>
 	);
 };
@@ -37,20 +34,19 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		backgroundColor: 'beige'
+		backgroundColor: 'floralwhite'
 	},
 	merchantTitleContainer: {
-		justifyContent: 'space-around',
-		alignItems: 'center',
-		borderWidth: 2,
-		maxWidth: '60%',
-		padding: 5
+		maxWidth: '50%',
+		padding: 5,
+		flex: 1
 	},
 	merchantName: {
-		fontSize: 18
+		fontSize: 24,
+		fontWeight: '700'
 	},
-	merchantAddress: {
-		fontSize: 14,
-		color: 'green'
+	buttonContainer: {
+		alignItems: 'center',
+		justifyContent: 'center'
 	}
 });

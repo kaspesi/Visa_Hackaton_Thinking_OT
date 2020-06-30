@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, View, Text, AsyncStorage } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import MerchantItem from '../components/MerchantItem';
 
@@ -13,9 +13,6 @@ export default ({ route }) => {
 			const response = await fetch(`https://frozen-peak-79158.herokuapp.com/merchant-items?merch_id=${merch_id}`);
 			const data = await response.json();
 
-			console.log(data);
-
-			// Failure on fetch.
 			if (!data.success) {
 				Alert.alert('Failed To Get Nearby Stores', 'Backend failed to get merchants for some reason.', [
 					{
@@ -25,12 +22,7 @@ export default ({ route }) => {
 				]);
 				return;
 			}
-			// Successful fetch, set the items to state and render.
 
-			data.items.map((item) => {
-				console.log('renders', item.item_id, item.merch_id, item.name, item.price);
-			});
-			// console.log(data.items);
 			setItems(data.items);
 		};
 		asyncEffect();
@@ -39,12 +31,7 @@ export default ({ route }) => {
 	return (
 		<View style={styles.merchantItems}>
 			<View style={styles.headerContainer}>
-				<Text style={styles.headerTitle}>
-					{merch_id} {name}
-				</Text>
-				<Text style={styles.headerDescription}>
-					{latitude} {longitude}
-				</Text>
+				<Text style={styles.headerTitle}>{name}</Text>
 			</View>
 
 			<View style={styles.itemsContainer}>
@@ -68,23 +55,20 @@ export default ({ route }) => {
 
 const styles = StyleSheet.create({
 	merchantItems: {
-		backgroundColor: 'darksalmon'
+		backgroundColor: 'white'
 	},
 	scroll: {
 		width: '100%',
 		height: '85%'
 	},
 	headerContainer: {
-		backgroundColor: 'lightpink',
+		backgroundColor: 'cornflowerblue',
 		width: '100%',
 		padding: 20,
 		borderBottomWidth: 3
 	},
 	headerTitle: {
-		fontSize: 24,
+		fontSize: 30,
 		fontWeight: '700'
-	},
-	headerDescription: {
-		fontSize: 14
 	}
 });

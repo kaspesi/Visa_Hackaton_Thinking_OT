@@ -20,8 +20,7 @@ const styles = StyleSheet.create({
 		borderRadius: 25,
 		backgroundColor: '#415A77',
 		minWidth: 150,
-		maxWidth: 250,
-		marginBottom: 20
+		maxWidth: 250
 	},
 	buttonText: {
 		color: 'white',

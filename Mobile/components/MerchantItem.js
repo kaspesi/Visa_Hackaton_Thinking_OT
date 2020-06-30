@@ -8,8 +8,6 @@ export default ({ item_id, name, price, merch_id }) => {
 	const { confirmedMerchantId, setConfirmedMerchantId } = useContext(MerchantIdContext);
 	const { cart, setCart } = useContext(CartContext);
 
-	console.log('TYPES', typeof price, typeof item_id, typeof merch_id, typeof name);
-
 	useEffect(
 		() => {
 			const asyncEffect = async () => {
@@ -32,18 +30,6 @@ export default ({ item_id, name, price, merch_id }) => {
 
 	const addToCart = async () => {
 		if ((merch_id !== confirmedMerchantId) & (cart.length > 0)) {
-			console.log(
-				'first',
-				merch_id,
-				confirmedMerchantId,
-				cart.length,
-				merch_id !== confirmedMerchantId,
-				cart.length !== 0,
-				(merch_id !== confirmedMerchantId) & (cart.length > 0),
-				typeof merch_id,
-				typeof confirmedMerchantId
-			);
-
 			Alert.alert(
 				'Rejected Buy!',
 				'You have an item from another merchant in your cart, please remove it first.',
@@ -112,8 +98,6 @@ export default ({ item_id, name, price, merch_id }) => {
 			return;
 		}
 
-		console.log(item_id, name, price, merch_id);
-
 		Alert.alert('Error!', 'Did not account for this case.', [
 			{
 				text: 'Okay Sure',
@@ -125,9 +109,7 @@ export default ({ item_id, name, price, merch_id }) => {
 	return (
 		<View style={styles.merchantItem}>
 			<View style={styles.itemTitleContainer}>
-				<Text style={styles.itemName}>
-					{item_id} {name} some really long name i mean really long
-				</Text>
+				<Text style={styles.itemName}>{name}</Text>
 				<Text style={styles.itemPrice}>Price: ${price}</Text>
 			</View>
 
@@ -144,20 +126,19 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		backgroundColor: 'beige'
+		backgroundColor: 'floralwhite'
 	},
 	itemTitleContainer: {
 		justifyContent: 'space-around',
-		alignItems: 'center',
-		borderWidth: 2,
-		maxWidth: '60%',
-		padding: 5
+		maxWidth: '50%',
+		padding: 5,
+		flex: 1
 	},
 	itemName: {
-		fontSize: 18
+		fontSize: 22
 	},
 	itemPrice: {
-		fontSize: 14,
+		fontSize: 18,
 		color: 'green'
 	}
 });

@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
 	headerContainer: {
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		// height: '50%',
 		width: '100%',
 		zIndex: 1
 	},
