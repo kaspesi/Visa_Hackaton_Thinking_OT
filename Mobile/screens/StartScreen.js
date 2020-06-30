@@ -21,6 +21,7 @@ export default ({ navigation }) => {
 				>
 					<Text>Register</Text>
 				</Button>
+				<View style={styles.emptyBlock} />
 				<Button
 					buttonPressHandler={() => {
 						navigation.navigate('Login');
@@ -62,5 +63,8 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		width: '80%',
 		marginTop: 50
+	},
+	emptyBlock: {
+		height: 50
 	}
 });
