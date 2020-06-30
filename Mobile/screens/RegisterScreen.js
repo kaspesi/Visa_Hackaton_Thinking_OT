@@ -125,6 +125,7 @@ export default ({ navigation }) => {
 
 				<View style={styles.buttonsContainer}>
 					<Button buttonPressHandler={() => navigation.goBack()}>Go Back</Button>
+					<View style={styles.emptyBlock} />
 					<Button buttonPressHandler={registerButtonHandler}>Register</Button>
 				</View>
 			</View>
@@ -145,28 +146,27 @@ const styles = StyleSheet.create({
 		width: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		paddingTop: 30
 	},
 	headerText: {
 		fontSize: 22,
 		fontWeight: '700',
-		color: 'white'
+		color: 'white',
+		textAlign: 'center'
 	},
 	formContainer: {
-		borderRadius: 50,
 		height: 250,
 		width: '90%',
 		alignItems: 'center',
 		justifyContent: 'space-around',
-		backgroundColor: 'white',
-		padding: 10
+		backgroundColor: 'white'
 	},
 	inputContainer: {
 		width: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'space-between',
-		marginTop: 50
+		justifyContent: 'space-between'
 	},
 	baseInput: {
 		backgroundColor: 'white',
@@ -180,7 +180,6 @@ const styles = StyleSheet.create({
 	},
 	buttonsContainer: {
 		marginBottom: 250,
-		marginTop: 50,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
@@ -188,5 +187,8 @@ const styles = StyleSheet.create({
 	},
 	inputField: {
 		backgroundColor: '#E0E1DD'
+	},
+	emptyBlock: {
+		width: 50
 	}
 });
