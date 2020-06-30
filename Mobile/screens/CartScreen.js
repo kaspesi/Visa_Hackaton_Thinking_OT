@@ -56,11 +56,11 @@ const styles = StyleSheet.create({
 	cartScreen: {
 		flex: 1,
 		alignContent: 'center',
-		backgroundColor: 'moccasin'
+		backgroundColor: 'white'
 	},
 	scroll: {
 		width: '100%',
-		height: '70%'
+		height: '75%'
 	},
 	buttonsContainer: {
 		flex: 1,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 	cartSummary: {
 		height: 70,
 		width: '100%',
-		backgroundColor: 'moccasin',
+		backgroundColor: 'beige',
 		alignItems: 'center',
 		justifyContent: 'center'
 	},

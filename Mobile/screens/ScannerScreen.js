@@ -41,21 +41,7 @@ export default () => {
 	);
 
 	const addToCart = async (name, price, item_id, merch_id) => {
-		console.log('add to cart triggered with merch_id', merch_id);
-
-		if ((merch_id !== confirmedMerchantId) & (cart.length > 0)) {
-			console.log(
-				'first',
-				merch_id,
-				confirmedMerchantId,
-				cart.length,
-				merch_id !== confirmedMerchantId,
-				cart.length !== 0,
-				(merch_id !== confirmedMerchantId) & (cart.length > 0),
-				typeof merch_id,
-				typeof confirmedMerchantId
-			);
-
+		if ((merch_id.toString() !== confirmedMerchantId) & (cart.length > 0)) {
 			Alert.alert(
 				'Rejected Buy!',
 				'You have an item from another merchant in your cart, please remove it first.',
@@ -71,10 +57,10 @@ export default () => {
 		}
 
 		if (cart.length === 0) {
-			setConfirmedMerchantId(merch_id);
+			setConfirmedMerchantId(merch_id.toString());
 			setCart([
 				{
-					itemId: item_id,
+					itemId: item_id.toString(),
 					name,
 					price,
 					quantity: 1
@@ -91,8 +77,8 @@ export default () => {
 			return;
 		}
 
-		if (merch_id === confirmedMerchantId) {
-			const foundIndex = cart.findIndex((item) => item.itemId === item_id);
+		if (merch_id.toString() === confirmedMerchantId) {
+			const foundIndex = cart.findIndex((item) => item.itemId === item_id.toString());
 
 			let itemExists;
 			if (foundIndex === -1) itemExists = false;
@@ -106,7 +92,7 @@ export default () => {
 				setCart([
 					...cart,
 					{
-						itemId: item_id,
+						itemId: item_id.toString(),
 						name,
 						price,
 						quantity: 1
@@ -123,8 +109,6 @@ export default () => {
 
 			return;
 		}
-
-		console.log(item_id, name, price, merch_id);
 
 		Alert.alert('Error!', 'Did not account for this case.', [
 			{
@@ -148,8 +132,7 @@ export default () => {
 		});
 		let newObj = {};
 		newArr.forEach((entry) => {
-			if (entry[1] === 'item_id' || entry[1] === 'merch_id') newObj[entry[0]] = parseInt(entry[1], 10);
-			else newObj[entry[0]] = entry[1];
+			newObj[entry[0]] = entry[1];
 		});
 		data = { ...newObj };
 
@@ -159,8 +142,7 @@ export default () => {
 			[
 				{
 					text: 'Cancel',
-					style: 'cancel',
-					onPress: () => console.log('Pressed Cancel Button...')
+					style: 'cancel'
 				},
 				{
 					text: 'Okay Sure',

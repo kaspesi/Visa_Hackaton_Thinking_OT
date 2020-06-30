@@ -31,13 +31,10 @@ export default () => {
 			const storageMerchantId = await AsyncStorage.getItem('merchantId');
 			if (storageMerchantId !== null && storageMerchantId !== -1)
 				setConfirmedMerchantId(parseInt(storageMerchantId, 10));
-			console.log(storageMerchantId);
 
 			const storageCartString = await AsyncStorage.getItem('cart');
 			const storageCart = JSON.parse(storageCartString);
 			if (storageCart !== null && storageCart.length !== 0) setCart(storageCart);
-
-			console.log('initial', storageToken, storageMerchantId, storageCart);
 		};
 		effectCallback();
 	}, []);

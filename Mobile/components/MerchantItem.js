@@ -29,7 +29,7 @@ export default ({ item_id, name, price, merch_id }) => {
 	);
 
 	const addToCart = async () => {
-		if ((merch_id !== confirmedMerchantId) & (cart.length > 0)) {
+		if ((merch_id.toString() !== confirmedMerchantId) & (cart.length > 0)) {
 			Alert.alert(
 				'Rejected Buy!',
 				'You have an item from another merchant in your cart, please remove it first.',
@@ -45,10 +45,10 @@ export default ({ item_id, name, price, merch_id }) => {
 		}
 
 		if (cart.length === 0) {
-			setConfirmedMerchantId(merch_id);
+			setConfirmedMerchantId(merch_id.toString());
 			setCart([
 				{
-					itemId: item_id,
+					itemId: item_id.toString(),
 					name,
 					price,
 					quantity: 1
@@ -65,8 +65,8 @@ export default ({ item_id, name, price, merch_id }) => {
 			return;
 		}
 
-		if (merch_id === confirmedMerchantId) {
-			const foundIndex = cart.findIndex((item) => item.itemId === item_id);
+		if (merch_id.toString() === confirmedMerchantId) {
+			const foundIndex = cart.findIndex((item) => item.itemId === item_id.toString());
 
 			let itemExists;
 			if (foundIndex === -1) itemExists = false;
@@ -80,7 +80,7 @@ export default ({ item_id, name, price, merch_id }) => {
 				setCart([
 					...cart,
 					{
-						itemId: item_id,
+						itemId: item_id.toString(),
 						name,
 						price,
 						quantity: 1

@@ -33,7 +33,6 @@ export default ({ itemId, name, price, quantity }) => {
 	);
 
 	const addQuantity = async () => {
-		console.log('added quantity');
 		const foundIndex = cart.findIndex((item) => item.itemId === itemId);
 
 		const tempCart = cart;
@@ -42,13 +41,10 @@ export default ({ itemId, name, price, quantity }) => {
 	};
 
 	const subtractQuantity = async () => {
-		console.log('subtracted quantity');
 		const foundIndex = cart.findIndex((item) => item.itemId === itemId);
 
 		let tempCart = cart;
 		tempCart[foundIndex].quantity -= 1;
-
-		console.log(tempCart);
 
 		tempCart = [ ...tempCart.filter((item) => item.quantity > 0) ];
 
@@ -57,22 +53,22 @@ export default ({ itemId, name, price, quantity }) => {
 
 	return (
 		<View style={styles.cartItem}>
-			<View style={styles.quantityButtonsContainer}>
-				<QuantityButton buttonPressHandler={addQuantity} color="green">
-					+
-				</QuantityButton>
-				<QuantityButton buttonPressHandler={subtractQuantity} color="crimson">
-					-
-				</QuantityButton>
+			<View style={styles.leftSection}>
+				<View style={styles.quantityButtonsContainer}>
+					<QuantityButton buttonPressHandler={addQuantity} color="darkseagreen">
+						+
+					</QuantityButton>
+					<QuantityButton buttonPressHandler={subtractQuantity} color="lightcoral">
+						-
+					</QuantityButton>
+				</View>
+				<Text style={styles.quantityText}>{quantity}</Text>
 			</View>
 
 			<View style={styles.itemDetailsContainer}>
-				<View style={styles.itemDetailsLeft}>
-					<Text style={styles.leftTextQuantity}>{quantity}</Text>
-				</View>
-				<View style={styles.itemDetailsRight}>
-					<Text style={styles.rightTextName}>{name} really long name for item i mean really long</Text>
-					<Text style={styles.rightTextPrice}>Price: ${(quantity * price).toFixed(2)}</Text>
+				<View style={styles.itemDetails}>
+					<Text style={styles.itemName}>{name}</Text>
+					<Text style={styles.itemPrice}>Price: ${(quantity * price).toFixed(2)}</Text>
 				</View>
 			</View>
 		</View>
@@ -86,40 +82,37 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		backgroundColor: 'powderblue',
+		backgroundColor: 'floralwhite',
 		padding: 10
 	},
+	leftSection: {
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'center',
+		width: 80
+	},
 	quantityButtonsContainer: {
-		width: '20%',
 		padding: 5,
 		justifyContent: 'space-between',
 		alignItems: 'center'
 	},
+	quantityText: {
+		fontSize: 24,
+		fontWeight: '700'
+	},
 	itemDetailsContainer: {
-		width: '80%',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center'
+		flex: 1
 	},
-	itemDetailsLeft: {
-		width: '10%'
-	},
-	itemDetailsRight: {
-		width: '90%',
-		justifyContent: 'center',
+	itemDetails: {
+		justifyContent: 'space-around',
 		alignItems: 'center',
-		marginRight: 40
+		paddingLeft: 20
 	},
-	leftTextQuantity: {
-		fontSize: 32,
-		fontWeight: '700'
+	itemName: {
+		fontSize: 20
 	},
-	rightTextName: {
-		fontSize: 22,
-		fontWeight: '700'
-	},
-	rightTextPrice: {
-		fontSize: 20,
+	itemPrice: {
+		fontSize: 16,
 		color: 'green'
 	}
 });
