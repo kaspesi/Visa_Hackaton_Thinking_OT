@@ -8,6 +8,8 @@ export default ({ item_id, name, price, merch_id }) => {
 	const { confirmedMerchantId, setConfirmedMerchantId } = useContext(MerchantIdContext);
 	const { cart, setCart } = useContext(CartContext);
 
+	console.log('TYPES', typeof price, typeof item_id, typeof merch_id, typeof name);
+
 	useEffect(
 		() => {
 			const asyncEffect = async () => {

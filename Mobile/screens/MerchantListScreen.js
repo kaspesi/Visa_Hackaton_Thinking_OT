@@ -76,7 +76,9 @@ export default ({ navigation }) => {
 										</View>
 									);
 								})
-							) : null}
+							) : (
+								<Text>Loading...</Text>
+							)}
 						</View>
 					</ScrollView>
 				</View>
