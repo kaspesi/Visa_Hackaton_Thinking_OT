@@ -63,6 +63,7 @@ export default () => {
 			administrativeArea,
 			postalCode,
 			phoneNumber,
+			AsyncStorage.getItem('merchantId'),
 			cart
 		);
 
@@ -91,12 +92,31 @@ export default () => {
 				administrativeArea,
 				postalCode,
 				country: 'US',
-				phoneNumber
-				// DOES NOT INCLUDE EMAIL BC JWT HAS IT
+				phoneNumber,
+				merchantId: AsyncStorage.getItem('merchantId'),
+				cart
 			})
 		});
 
 		const data = await response.json();
+
+		if (!data.success) {
+			console.log('failed for some reason');
+
+			Alert.alert('Confirm Order Pressed', data.errorMessage, [
+				{
+					text: 'Okay Sure',
+					style: 'default'
+				}
+			]);
+		}
+
+		Alert.alert('The order was confirmed!', 'You should clear the cart at this point', [
+			{
+				text: 'Okay Sure',
+				style: 'default'
+			}
+		]);
 
 		console.log(data);
 	};
