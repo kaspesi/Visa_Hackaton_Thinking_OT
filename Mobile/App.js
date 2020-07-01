@@ -27,6 +27,7 @@ export default () => {
 		const effectCallback = async () => {
 			const storageToken = await AsyncStorage.getItem('token');
 			if (storageToken) setIsAuth(true);
+			console.log('token is', storageToken, typeof storageToken);
 
 			const storageMerchantId = await AsyncStorage.getItem('merchantId');
 			if (storageMerchantId !== null && storageMerchantId !== -1)

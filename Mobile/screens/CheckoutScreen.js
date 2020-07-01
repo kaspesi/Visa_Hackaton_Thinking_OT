@@ -15,6 +15,7 @@ import CartContext from '../context/CartContext';
 import Button from '../components/Button';
 
 export default () => {
+	const [ email, setEmail ] = useState('');
 	const [ number, setNumber ] = useState('');
 	const [ expirationMonth, setExpirationMonth ] = useState('');
 	const [ expirationYear, setExpirationYear ] = useState('');
@@ -67,17 +68,14 @@ export default () => {
 			cart
 		);
 
-		console.log('total', calculateCartTotal(), typeof calculateCartTotal());
-		console.log('merch id should restrict this page if -1', confirmedMerchantId);
-
 		// fetch POST /checkout with body, token, etc.
 		const response = await fetch('https://frozen-peak-79158.herokuapp.com/checkout', {
 			method: 'post',
 			headers: {
-				'content-type': 'application/json',
-				authorization: AsyncStorage.getItem('token')
+				'content-type': 'application/json'
 			},
 			body: JSON.stringify({
+				email,
 				number,
 				expirationMonth,
 				expirationYear,
@@ -93,7 +91,7 @@ export default () => {
 				postalCode,
 				country: 'US',
 				phoneNumber,
-				merchantId: AsyncStorage.getItem('merchantId'),
+				merch_id: confirmedMerchantId,
 				cart
 			})
 		});
@@ -126,6 +124,15 @@ export default () => {
 			<View style={styles.checkoutScreen}>
 				<ScrollView style={styles.scroll}>
 					<View style={styles.formContainer}>
+						<View style={styles.inputContainer}>
+							<TextInput
+								style={{ ...styles.baseInput, ...styles.inputField }}
+								onChangeText={(input) => setEmail(input)}
+								value={email}
+								placeholder="email"
+							/>
+						</View>
+
 						<View style={styles.inputContainer}>
 							<TextInput
 								style={{ ...styles.baseInput, ...styles.inputField }}
