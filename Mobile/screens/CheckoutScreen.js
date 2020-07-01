@@ -16,18 +16,18 @@ import Button from '../components/Button';
 
 export default () => {
 	const [ email, setEmail ] = useState('');
-	const [ number, setNumber ] = useState('');
-	const [ expirationMonth, setExpirationMonth ] = useState('');
-	const [ expirationYear, setExpirationYear ] = useState('');
-	const [ securityCode, setSecurityCode ] = useState('');
-	const [ firstName, setFirstName ] = useState('');
-	const [ lastName, setLastName ] = useState('');
-	const [ address1, setAddress1 ] = useState('');
-	const [ address2, setAddress2 ] = useState('');
-	const [ locality, setLocality ] = useState('');
-	const [ administrativeArea, setAdministrativeArea ] = useState('');
-	const [ postalCode, setPostalCode ] = useState('');
-	const [ phoneNumber, setPhoneNumber ] = useState('');
+	const [ number, setNumber ] = useState('4111111111111111');
+	const [ expirationMonth, setExpirationMonth ] = useState('12');
+	const [ expirationYear, setExpirationYear ] = useState('2031');
+	const [ securityCode, setSecurityCode ] = useState('123');
+	const [ firstName, setFirstName ] = useState('John');
+	const [ lastName, setLastName ] = useState('Doe');
+	const [ address1, setAddress1 ] = useState('1 Market St');
+	const [ address2, setAddress2 ] = useState('Address 2');
+	const [ locality, setLocality ] = useState('san francisco');
+	const [ administrativeArea, setAdministrativeArea ] = useState('CA');
+	const [ postalCode, setPostalCode ] = useState('94105');
+	const [ phoneNumber, setPhoneNumber ] = useState('4158880000');
 
 	const { confirmedMerchantId, setConfirmedMerchantId } = useContext(MerchantIdContext);
 	const { cart, setCart } = useContext(CartContext);
