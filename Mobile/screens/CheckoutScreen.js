@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -14,7 +14,7 @@ import MerchantIdContext from '../context/MerchantIdContext';
 import CartContext from '../context/CartContext';
 import Button from '../components/Button';
 
-export default () => {
+export default ({ navigation }) => {
 	const [ email, setEmail ] = useState('');
 	const [ number, setNumber ] = useState('4111111111111111');
 	const [ expirationMonth, setExpirationMonth ] = useState('12');
@@ -32,6 +32,26 @@ export default () => {
 	const { confirmedMerchantId, setConfirmedMerchantId } = useContext(MerchantIdContext);
 	const { cart, setCart } = useContext(CartContext);
 
+	useEffect(
+		() => {
+			const asyncEffect = async () => {
+				await AsyncStorage.setItem('merchantId', confirmedMerchantId.toString());
+			};
+			asyncEffect();
+		},
+		[ confirmedMerchantId ]
+	);
+
+	useEffect(
+		() => {
+			const asyncEffect = async () => {
+				await AsyncStorage.setItem('cart', JSON.stringify(cart));
+			};
+			asyncEffect();
+		},
+		[ cart ]
+	);
+
 	const calculateCartTotal = () => {
 		let total = 0;
 		cart.map((item) => (total += item.price * item.quantity));
@@ -40,13 +60,6 @@ export default () => {
 
 	const confirmOrderHandler = async () => {
 		// NEEDS VALIDATION
-
-		Alert.alert('Confirm Order Pressed', 'this may or may not succeed, and you should validate', [
-			{
-				text: 'Okay Sure',
-				style: 'default'
-			}
-		]);
 
 		console.log(cart);
 
@@ -99,9 +112,7 @@ export default () => {
 		const data = await response.json();
 
 		if (!data.success) {
-			console.log('failed for some reason');
-
-			Alert.alert('Confirm Order Pressed', data.errorMessage, [
+			return Alert.alert('Order Placement Failed!', 'Please check that you entered the correct information.', [
 				{
 					text: 'Okay Sure',
 					style: 'default'
@@ -109,14 +120,16 @@ export default () => {
 			]);
 		}
 
-		Alert.alert('The order was confirmed!', 'You should clear the cart at this point', [
+		setCart([]);
+		setConfirmedMerchantId(-1);
+
+		Alert.alert('Order Placement Success!', 'You will now be redirected to the cart screen.', [
 			{
 				text: 'Okay Sure',
-				style: 'default'
+				style: 'default',
+				onPress: () => navigation.navigate('Cart')
 			}
 		]);
-
-		console.log(data);
 	};
 
 	return (
