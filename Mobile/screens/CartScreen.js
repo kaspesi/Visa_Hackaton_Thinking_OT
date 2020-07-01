@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, Text, AsyncStorage, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, AsyncStorage, ScrollView, Alert } from 'react-native';
 import Button from '../components/Button';
 import CartItem from '../components/CartItem';
 import MerchantIdContext from '../context/MerchantIdContext';
@@ -24,6 +24,19 @@ export default ({ navigation }) => {
 		return total;
 	};
 
+	const moveToCheckout = () => {
+		if (cart.length === 0) {
+			Alert.alert('Checkout Failed!', 'You must add something to your cart.', [
+				{
+					text: 'Okay Sure',
+					style: 'default'
+				}
+			]);
+			return;
+		}
+		navigation.navigate('Checkout');
+	};
+
 	return (
 		<View style={styles.cartScreen}>
 			<View style={styles.cartItems}>
@@ -46,7 +59,7 @@ export default ({ navigation }) => {
 				<Button buttonPressHandler={clearEverything} color="orangered">
 					Clear Everything
 				</Button>
-				<Button buttonPressHandler={() => navigation.navigate('Checkout')}>Checkout</Button>
+				<Button buttonPressHandler={moveToCheckout}>Checkout</Button>
 			</View>
 		</View>
 	);

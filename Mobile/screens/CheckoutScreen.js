@@ -135,6 +135,9 @@ export default ({ navigation }) => {
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.checkoutScreen}>
+				<View style={styles.headerContainer}>
+					<Text style={styles.headerText}>Payment Info</Text>
+				</View>
 				<ScrollView style={styles.scroll}>
 					<View style={styles.formContainer}>
 						<View style={styles.inputContainer}>
@@ -254,11 +257,10 @@ export default ({ navigation }) => {
 							/>
 						</View>
 					</View>
-
-					<View style={styles.buttonsContainer}>
-						<Button buttonPressHandler={confirmOrderHandler}>Confirm Order</Button>
-					</View>
 				</ScrollView>
+				<View style={styles.buttonsContainer}>
+					<Button buttonPressHandler={confirmOrderHandler}>Confirm Order</Button>
+				</View>
 			</View>
 		</TouchableWithoutFeedback>
 	);
@@ -274,21 +276,20 @@ const styles = StyleSheet.create({
 	},
 	scroll: {
 		flex: 1,
-		borderWidth: 4,
-		borderColor: 'red'
+		borderWidth: 4
 	},
 	formContainer: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'space-around',
-		backgroundColor: 'white',
-		borderWidth: 5
+		backgroundColor: 'white'
 	},
 	inputContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		marginBottom: 20
+		marginTop: 10,
+		marginBottom: 10
 	},
 	baseInput: {
 		backgroundColor: 'white',
@@ -297,13 +298,24 @@ const styles = StyleSheet.create({
 		borderRadius: 10
 	},
 	buttonsContainer: {
-		marginBottom: 250,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		width: '80%'
+		width: '100%',
+		height: 100,
+		backgroundColor: '#778DA9'
 	},
 	inputField: {
 		backgroundColor: '#E0E1DD'
+	},
+	headerContainer: {
+		height: 70,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#415A77'
+	},
+	headerText: {
+		fontSize: 24,
+		color: 'white'
 	}
 });
