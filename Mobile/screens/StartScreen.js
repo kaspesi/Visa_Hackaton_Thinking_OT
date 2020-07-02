@@ -7,8 +7,10 @@ export default ({ navigation }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.header}>
-				<Text style={styles.headerTitle}>Thinking OT</Text>
 				<Logo />
+				<View style={styles.headerTitleContainer}>
+					<Text style={styles.headerTitle}>Welcome to the future of shopping</Text>
+				</View>
 			</View>
 
 			<View style={styles.buttonsContainer}>
@@ -17,14 +19,15 @@ export default ({ navigation }) => {
 						navigation.navigate('Register');
 					}}
 				>
-					Register
+					<Text>Register</Text>
 				</Button>
+				<View style={styles.emptyBlock} />
 				<Button
 					buttonPressHandler={() => {
 						navigation.navigate('Login');
 					}}
 				>
-					Login
+					<Text>Login</Text>
 				</Button>
 			</View>
 		</View>
@@ -35,22 +38,33 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		alignItems: 'center',
-		justifyContent: 'space-around',
-		backgroundColor: 'beige'
+		alignItems: 'center'
 	},
 	header: {
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor: '#778DA9',
+		width: '100%',
+		paddingTop: 20,
+		paddingBottom: 20
+	},
+	headerTitleContainer: {
+		borderRadius: 20,
+		padding: 20,
+		marginBottom: 10
 	},
 	headerTitle: {
-		fontSize: 24,
-		fontWeight: '700'
+		fontSize: 16,
+		fontWeight: '700',
+		color: 'white'
 	},
 	buttonsContainer: {
-		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		width: '80%'
+		width: '80%',
+		marginTop: 50
+	},
+	emptyBlock: {
+		height: 50
 	}
 });

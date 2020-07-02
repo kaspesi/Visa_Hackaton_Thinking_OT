@@ -1,28 +1,24 @@
 {
-  "expo": {
-    "name": "mobile",
-    "slug": "mobile",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    }
-  }
+	"expo": {
+		"name": "Spend Safe",
+		"slug": "spend_safe",
+		"platforms": [ "ios", "android", "web" ],
+		"version": "1.0.6",
+		"orientation": "portrait",
+		"icon": "./assets/SpendSafeLogoLarge.png",
+		"splash": {
+			"image": "./assets/SpendSafeLogoXLarge.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"updates": {
+			"enabled": true,
+			"fallbackToCacheTimeout": 10000
+		},
+		"assetBundlePatterns": [ "**/*" ],
+		"ios": {
+			"supportsTablet": true
+		},
+		"privacy": "public"
+	}
 }

@@ -6,7 +6,7 @@ import LoginScreen from '../screens/LoginScreen';
 
 const StartStack = createStackNavigator();
 
-export default ({ setIsAuth }) => {
+export default () => {
 	return (
 		<StartStack.Navigator
 			screenOptions={{
@@ -15,7 +15,7 @@ export default ({ setIsAuth }) => {
 		>
 			<StartStack.Screen name="Start" component={StartScreen} />
 			<StartStack.Screen name="Register" component={RegisterScreen} />
-			<StartStack.Screen name="Login" component={LoginScreen} initialParams={{ setIsAuth }} />
+			<StartStack.Screen name="Login" component={LoginScreen} />
 		</StartStack.Navigator>
 	);
 };

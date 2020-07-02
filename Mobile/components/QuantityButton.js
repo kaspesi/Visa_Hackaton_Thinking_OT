@@ -14,19 +14,14 @@ export default ({ children, buttonPressHandler, color }) => {
 
 const styles = StyleSheet.create({
 	buttonContainer: {
-		padding: 15,
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderRadius: 15,
-		backgroundColor: '#415A77',
-		minWidth: 150,
-		maxWidth: 250
+		height: 30,
+		width: 30
 	},
 	buttonText: {
+		textAlign: 'center',
 		color: 'white',
-		fontSize: 16,
-		fontWeight: '700',
-		paddingLeft: 20,
-		paddingRight: 20
+		fontSize: 14
 	}
 });
