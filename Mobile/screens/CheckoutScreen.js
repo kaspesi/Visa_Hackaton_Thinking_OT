@@ -59,27 +59,28 @@ export default ({ navigation }) => {
 	};
 
 	const confirmOrderHandler = async () => {
-		// NEEDS VALIDATION
-
-		console.log(cart);
-
-		console.log(
-			'data',
-			number,
-			expirationMonth,
-			expirationYear,
-			securityCode,
-			firstName,
-			lastName,
-			address1,
-			address2,
-			locality,
-			administrativeArea,
-			postalCode,
-			phoneNumber,
-			AsyncStorage.getItem('merchantId'),
-			cart
-		);
+		if (
+			(!email.length,
+			!number.length,
+			!expirationMonth.length,
+			!expirationYear.length,
+			!securityCode.length,
+			!firstName.length,
+			!lastName.length,
+			!address1.length,
+			!address2.length,
+			!locality.length,
+			!administrativeArea.length,
+			!postalCode.length,
+			!phoneNumber.length)
+		) {
+			return Alert.alert('Empty Field!', 'Please make sure to fill out every field!', [
+				{
+					text: 'Okay Sure',
+					style: 'default'
+				}
+			]);
+		}
 
 		// fetch POST /checkout with body, token, etc.
 		const response = await fetch('https://frozen-peak-79158.herokuapp.com/checkout', {
