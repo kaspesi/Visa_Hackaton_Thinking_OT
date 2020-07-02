@@ -77,13 +77,26 @@ export default ({ itemId, name, price, quantity }) => {
 
 const styles = StyleSheet.create({
 	cartItem: {
-		width: '100%',
-		borderBottomWidth: 2,
+		width: '95%',
+		height: 80,
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		justifyContent: 'space-around',
 		alignItems: 'center',
-		backgroundColor: 'floralwhite',
-		padding: 10
+		backgroundColor: '#FFFFFF',
+		margin: '2.5%',
+		borderRadius: 10,
+		paddingTop: 15,
+		paddingBottom: 25,
+		paddingLeft: 10,
+		paddingRight: 10,
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 5,
 	},
 	leftSection: {
 		flexDirection: 'row',

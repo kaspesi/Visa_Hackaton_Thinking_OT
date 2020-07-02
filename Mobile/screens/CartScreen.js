@@ -57,7 +57,7 @@ export default ({ navigation }) => {
 
 			<View style={styles.buttonsContainer}>
 				<Button buttonPressHandler={clearEverything} color="orangered">
-					Clear Everything
+					Clear
 				</Button>
 				<Button buttonPressHandler={moveToCheckout}>Checkout</Button>
 			</View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 	cartScreen: {
 		flex: 1,
 		alignContent: 'center',
-		backgroundColor: 'white'
+		backgroundColor: '#f8f8ff'
 	},
 	scroll: {
 		width: '100%',
@@ -80,19 +80,20 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		backgroundColor: 'beige'
+		backgroundColor: '#E0E1DD',
 	},
 	cartSummary: {
-		height: 70,
+		height: 50,
 		width: '100%',
-		backgroundColor: 'beige',
+		backgroundColor: '#E0E1DD',
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
 	cartSummaryText: {
 		fontSize: 28,
+		marginTop: 10,
 		fontWeight: '700',
-		color: 'green',
+		color: '#1B263B',
 		textAlign: 'center'
 	}
 });

@@ -59,16 +59,20 @@ const styles = StyleSheet.create({
 	},
 	scroll: {
 		width: '100%',
-		height: '85%'
+		height: '90%'
 	},
 	headerContainer: {
-		backgroundColor: 'cornflowerblue',
+		backgroundColor: '#778DA9',
 		width: '100%',
 		padding: 20,
-		borderBottomWidth: 3
+		color: '#FFFFFF',
+		marginBottom: 10,
 	},
 	headerTitle: {
 		fontSize: 30,
-		fontWeight: '700'
-	}
+		fontWeight: '700',
+		color: '#FFFFFF',
+	}, 
+
+	
 });

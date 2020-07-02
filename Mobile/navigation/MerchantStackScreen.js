@@ -29,11 +29,12 @@ export default () => {
 		<MerchantStack.Navigator
 			screenOptions={{
 				headerStyle: {
-					backgroundColor: '#778DA9'
+					backgroundColor: '#1B263B'
 				},
 				headerTintColor: 'white',
 				headerTitleStyle: {
-					fontWeight: 'bold'
+					fontWeight: 'bold',
+					fontSize: 20,
 				}
 			}}
 		>
@@ -53,14 +54,14 @@ export default () => {
 				name="MerchantList"
 				component={MerchantListScreen}
 				options={{
-					title: 'Nearby Merchants'
+					title: 'Nearby'
 				}}
 			/>
 			<MerchantStack.Screen
 				name="MerchantItems"
 				component={MerchantItemsScreen}
 				options={{
-					title: 'Merchant Items'
+					title: 'Items'
 				}}
 			/>
 		</MerchantStack.Navigator>

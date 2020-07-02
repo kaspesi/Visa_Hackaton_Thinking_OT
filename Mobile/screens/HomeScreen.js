@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 	},
 	headerTitleContainer: {
 		padding: 30,
-		backgroundColor: 'cornflowerblue',
+		backgroundColor: '#778DA9',
 		justifyContent: 'center',
 		alignItems: 'center',
 		flexDirection: 'row',

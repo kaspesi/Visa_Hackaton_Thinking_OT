@@ -120,13 +120,26 @@ export default ({ item_id, name, price, merch_id }) => {
 
 const styles = StyleSheet.create({
 	merchantItem: {
-		width: '100%',
-		height: 100,
-		borderBottomWidth: 2,
+		width: '95%',
+		height: 80,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		backgroundColor: 'floralwhite'
+		backgroundColor: '#FFFFFF',
+		margin: '2.5%',
+		borderRadius: 10,
+		paddingTop: 15,
+		paddingBottom: 25,
+		paddingLeft: 10,
+		paddingRight: 10,
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 5,
 	},
 	itemTitleContainer: {
 		justifyContent: 'space-around',

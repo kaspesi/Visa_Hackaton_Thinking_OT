@@ -258,10 +258,11 @@ export default ({ navigation }) => {
 							/>
 						</View>
 					</View>
+					<View style={styles.buttonsContainer}>
+						<Button buttonPressHandler={confirmOrderHandler}>Confirm Order</Button>
+					</View>
 				</ScrollView>
-				<View style={styles.buttonsContainer}>
-					<Button buttonPressHandler={confirmOrderHandler}>Confirm Order</Button>
-				</View>
+				
 			</View>
 		</TouchableWithoutFeedback>
 	);
@@ -277,7 +278,6 @@ const styles = StyleSheet.create({
 	},
 	scroll: {
 		flex: 1,
-		borderWidth: 4
 	},
 	formContainer: {
 		flex: 1,
@@ -303,8 +303,9 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-around',
 		alignItems: 'center',
 		width: '100%',
-		height: 150,
-		backgroundColor: '#778DA9'
+		backgroundColor: '#FFFFFF',
+		paddingBottom: 200,
+		paddingTop: 20,
 	},
 	inputField: {
 		backgroundColor: '#E0E1DD'
