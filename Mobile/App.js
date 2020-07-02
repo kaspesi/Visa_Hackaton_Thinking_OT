@@ -52,7 +52,7 @@ export default () => {
 									tabBarIcon: () => {
 										let iconName;
 
-										if (route.name === 'Merchant') {
+										if (route.name === 'Home') {
 											iconName = 'ios-home';
 										} else if (route.name === 'Scanner') {
 											iconName = 'md-qr-scanner';
@@ -65,14 +65,15 @@ export default () => {
 								})}
 								tabBarOptions={{
 									activeTintColor: 'tomato',
-									inactiveTintColor: 'gray',
+									inactiveTintColor: 'white',
 									style: {
-										height: 70,
-										backgroundColor: 'black'
+										height: 85,
+										paddingTop: 5,
+										backgroundColor: '#1B263B'
 									}
 								}}
 							>
-								<Tab.Screen name="Merchant" component={MerchantStackScreen} />
+								<Tab.Screen name="Home" component={MerchantStackScreen} />
 								<Tab.Screen name="Scanner" component={ScannerStackScreen} />
 								<Tab.Screen name="Cart" component={CartStackScreen} />
 							</Tab.Navigator>

@@ -55,7 +55,7 @@ export default ({ route }) => {
 
 const styles = StyleSheet.create({
 	merchantItems: {
-		backgroundColor: 'white'
+		backgroundColor: '#E0E1DD',
 	},
 	scroll: {
 		width: '100%',

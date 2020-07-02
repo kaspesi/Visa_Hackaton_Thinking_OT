@@ -48,11 +48,11 @@ export default ({ navigation }) => {
 
 	return (
 		<View style={styles.merchantList}>
-			<View style={styles.headerContainer}>
+			{/* <View style={styles.headerContainer}>
 				<Text style={styles.headerLocation}>Latitude: {latitude}</Text>
 
 				<Text style={styles.headerLocation}>Longitude: {longitude}</Text>
-			</View>
+			</View> */}
 
 			{errorMessage ? (
 				<Text style={errorMessage}>YOU DID NOT ALLOW LOCATION SERVICES</Text>
@@ -81,11 +81,12 @@ export default ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	merchantList: {
-		backgroundColor: 'white'
+		backgroundColor: '#E0E1DD',
+		paddingTop: 20,
 	},
 	scroll: {
 		width: '100%',
-		height: '95%'
+		height: '100%'
 	},
 	headerContainer: {
 		backgroundColor: 'cornflowerblue',

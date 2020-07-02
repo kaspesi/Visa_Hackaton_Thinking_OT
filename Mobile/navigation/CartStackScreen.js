@@ -10,11 +10,12 @@ export default () => {
 		<CartStack.Navigator
 			screenOptions={{
 				headerStyle: {
-					backgroundColor: '#778DA9'
+					backgroundColor: '#1B263B'
 				},
 				headerTintColor: 'white',
 				headerTitleStyle: {
-					fontWeight: 'bold'
+					fontWeight: 'bold',
+					fontSize: 20,
 				}
 			}}
 		>
